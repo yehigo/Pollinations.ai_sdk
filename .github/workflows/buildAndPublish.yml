@@ -19,7 +19,7 @@ jobs:
     name: pollination_sdk   
     environment:
       name: pypi
-      url: https://pypi.org/p/Credit-Management
+      url: https://pypi.org/p/PollinationAI_SDK
 
     permissions:
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
