@@ -1,6 +1,6 @@
 
 # .github/workflows/buildAndpublish.yml
-name: Build and publish to pub.dev
+name: Build and publish
 
 on:
   push:
@@ -16,15 +16,20 @@ on:
 jobs:
   generate-client:
     runs-on: ubuntu-latest
-    name: Example   
+    name: pollination_sdk   
     environment:
       name: pypi
       url: https://pypi.org/p/Credit-Management
+
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+      contents: read
     steps:
 
       # Checkout your code
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
 
       # Generate your OpenAPI document (if you don't write it manually)
 
@@ -37,7 +42,19 @@ jobs:
           config-file: config.yml
           openapi-file: pollination_api.json
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12" # Or whatever the version the package needs
+      - name: Install build backend
+        run: python -m pip install --upgrade pip build
+
       # Do something with the generated client (likely publishing it somewhere)
-      - name: Do something with the client
+      - name: build python client
         run: |
-          ls
+          cd python-client
+          python -m build
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python-client/dist/
