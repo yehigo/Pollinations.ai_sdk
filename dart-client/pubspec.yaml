@@ -5,7 +5,7 @@
 name: 'PollinationAI_SDK'
 version: '1.0.1'
 description: 'OpenAPI API client'
-homepage: 'homepage'
+homepage: 'https://github.com/yehigo/pollinations.ai'
 environment:
   sdk: '>=2.12.0 <4.0.0'
 dependencies:

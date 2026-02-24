@@ -16,7 +16,7 @@ on:
 jobs:
   generate-client:
     runs-on: ubuntu-latest
-    name: pollination_sdk   
+    name: PollinationAI_SDK   
     environment:
       name: pypi
       url: https://pypi.org/p/PollinationAI_SDK
@@ -58,3 +58,14 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: python-client/dist/
+      - name: Generate Dart Client
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+              generator: dart
+              config-file: config.yml
+              openapi-file: pollination_api.json
+
+      - name: Publish to pub dev
+        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+        with:
+          working-directory: dart-client/

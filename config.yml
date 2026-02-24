@@ -1,1 +1,12 @@
 packageName: PollinationAI_SDK
+projectName: PollinationAI_SDK
+packageVersion: 1.0.1
+packageUrl: https://github.com/yehigo/pollinations.ai
+packageAuthor_email: pintulalmee@gmail.com
+pubName: PollinationAI_SDK
+pubVersion: 1.0.1
+pubLibrary: PollinationAI_SDK
+pubpubAuthor: Pintu Lal Meena
+pubAuthorEmail: pintulalmee@gmail.com
+pubHomepage: https://github.com/yehigo/pollinations.ai
+description: The PollinationAI SDK for Flutter/Dart enables seamless access to AI-powered media generation tools, including images, audio, and text, via the Pollinations platform.
