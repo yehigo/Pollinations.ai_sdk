@@ -74,7 +74,11 @@ jobs:
               config-file: config.yml
               openapi-file: pollination_api.json
 
-      - name: Publish to pub dev
-        uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
-        with:
-          working-directory: dart-client/
+  publish-dart:
+    needs: generate-dart
+    permissions:
+      id-token: write
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      working-directory: dart-client/
+     
