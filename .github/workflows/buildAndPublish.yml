@@ -15,8 +15,9 @@ on:
 
 jobs:
   publish-python:
+    if: false
     runs-on: ubuntu-latest
-    name: PollinationAI_SDK   
+    name: PollinationAI_SDK Python   
     environment:
       name: pypi
       url: https://pypi.org/p/PollinationAI_SDK
@@ -60,9 +61,9 @@ jobs:
           packages-dir: python-client/dist/
   generate-dart:
     runs-on: ubuntu-latest
-    name: PollinationAI_SDK
+    name: PollinationAI_SDK Dart
     permissions:
-      id-token: write # Required for authentication using OIDC
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,11 +74,15 @@ jobs:
               generator: dart
               config-file: config.yml
               openapi-file: pollination_api.json
+      - name: Perform Replacement
+        run: |
+          find dart-client/test -type f -name "*.dart" -exec sed -i 's/openapi/PollinationAI_SDK/g' {} +
 
   publish-dart:
     needs: generate-dart
     permissions:
       id-token: write
+      contents: read
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
     with:
       working-directory: dart-client/
