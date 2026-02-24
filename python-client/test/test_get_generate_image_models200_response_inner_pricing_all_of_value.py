@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_image_models200_response_inner_pricing_all_of_value import GetGenerateImageModels200ResponseInnerPricingAllOfValue
+from PollinationAI_SDK.models.get_generate_image_models200_response_inner_pricing_all_of_value import GetGenerateImageModels200ResponseInnerPricingAllOfValue
 
 class TestGetGenerateImageModels200ResponseInnerPricingAllOfValue(unittest.TestCase):
     """GetGenerateImageModels200ResponseInnerPricingAllOfValue unit test stubs"""

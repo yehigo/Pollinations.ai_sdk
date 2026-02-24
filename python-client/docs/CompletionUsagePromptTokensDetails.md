@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.completion_usage_prompt_tokens_details import CompletionUsagePromptTokensDetails
+from PollinationAI_SDK.models.completion_usage_prompt_tokens_details import CompletionUsagePromptTokensDetails
 
 # TODO update the JSON string below
 json = "{}"

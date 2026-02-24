@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_functions_inner import PostGenerateV1ChatCompletionsRequestFunctionsInner
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_functions_inner import PostGenerateV1ChatCompletionsRequestFunctionsInner
 
 class TestPostGenerateV1ChatCompletionsRequestFunctionsInner(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestFunctionsInner unit test stubs"""

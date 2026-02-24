@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_account_usage_daily200_response_usage_inner import GetAccountUsageDaily200ResponseUsageInner
+from PollinationAI_SDK.models.get_account_usage_daily200_response_usage_inner import GetAccountUsageDaily200ResponseUsageInner
 
 class TestGetAccountUsageDaily200ResponseUsageInner(unittest.TestCase):
     """GetAccountUsageDaily200ResponseUsageInner unit test stubs"""

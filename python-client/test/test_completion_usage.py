@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.completion_usage import CompletionUsage
+from PollinationAI_SDK.models.completion_usage import CompletionUsage
 
 class TestCompletionUsage(unittest.TestCase):
     """CompletionUsage unit test stubs"""
@@ -36,13 +36,13 @@ class TestCompletionUsage(unittest.TestCase):
         if include_optional:
             return CompletionUsage(
                 completion_tokens = 0,
-                completion_tokens_details = test.models.completion_usage_completion_tokens_details.CompletionUsage_completion_tokens_details(
+                completion_tokens_details = PollinationAI_SDK.models.completion_usage_completion_tokens_details.CompletionUsage_completion_tokens_details(
                     accepted_prediction_tokens = 0, 
                     audio_tokens = 0, 
                     reasoning_tokens = 0, 
                     rejected_prediction_tokens = 0, ),
                 prompt_tokens = 0,
-                prompt_tokens_details = test.models.completion_usage_prompt_tokens_details.CompletionUsage_prompt_tokens_details(
+                prompt_tokens_details = PollinationAI_SDK.models.completion_usage_prompt_tokens_details.CompletionUsage_prompt_tokens_details(
                     audio_tokens = 0, 
                     cached_tokens = 0, ),
                 total_tokens = 0

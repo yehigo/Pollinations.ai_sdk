@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_logprobs_content_inner import PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInner
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_logprobs_content_inner import PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInner
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInner(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInner unit test stubs"""
@@ -41,7 +41,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInn
                     -9007199254740991
                     ],
                 top_logprobs = [
-                    test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
                         token = '', 
                         logprob = 1.337, 
                         bytes = [
@@ -57,7 +57,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobsContentInn
                     -9007199254740991
                     ],
                 top_logprobs = [
-                    test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
                         token = '', 
                         logprob = 1.337, 
                         bytes = [

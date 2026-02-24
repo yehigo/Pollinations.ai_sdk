@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_image_models500_response_error_message import GetGenerateImageModels500ResponseErrorMessage
+from PollinationAI_SDK.models.get_generate_image_models500_response_error_message import GetGenerateImageModels500ResponseErrorMessage
 
 class TestGetGenerateImageModels500ResponseErrorMessage(unittest.TestCase):
     """GetGenerateImageModels500ResponseErrorMessage unit test stubs"""

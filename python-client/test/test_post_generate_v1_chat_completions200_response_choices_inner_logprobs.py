@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_logprobs import PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_logprobs import PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs unit test stubs"""
@@ -36,14 +36,14 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs(unittest.
         if include_optional:
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs(
                 content = [
-                    test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
                         token = '', 
                         logprob = 1.337, 
                         bytes = [
                             -9007199254740991
                             ], 
                         top_logprobs = [
-                            test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
+                            PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
                                 token = '', 
                                 logprob = 1.337, 
                                 bytes = [
@@ -55,14 +55,14 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs(unittest.
         else:
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs(
                 content = [
-                    test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
                         token = '', 
                         logprob = 1.337, 
                         bytes = [
                             -9007199254740991
                             ], 
                         top_logprobs = [
-                            test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
+                            PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
                                 token = '', 
                                 logprob = 1.337, 
                                 bytes = [

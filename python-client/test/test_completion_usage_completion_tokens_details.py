@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.completion_usage_completion_tokens_details import CompletionUsageCompletionTokensDetails
+from PollinationAI_SDK.models.completion_usage_completion_tokens_details import CompletionUsageCompletionTokensDetails
 
 class TestCompletionUsageCompletionTokensDetails(unittest.TestCase):
     """CompletionUsageCompletionTokensDetails unit test stubs"""

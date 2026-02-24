@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner import PostGenerateV1ChatCompletions200ResponseChoicesInner
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner import PostGenerateV1ChatCompletions200ResponseChoicesInner
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInner(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInner unit test stubs"""
@@ -37,39 +37,39 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInner(unittest.TestCase
             return PostGenerateV1ChatCompletions200ResponseChoicesInner(
                 finish_reason = '',
                 index = 0,
-                message = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message.postGenerateV1ChatCompletions_200_response_choices_inner_message(
+                message = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message.postGenerateV1ChatCompletions_200_response_choices_inner_message(
                     content = '', 
                     tool_calls = [
-                        test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner(
+                        PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner(
                             id = '', 
                             type = 'function', 
-                            function = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
+                            function = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
                                 name = '', 
                                 arguments = '', ), )
                         ], 
                     role = 'assistant', 
-                    function_call = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
+                    function_call = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
                         name = '', 
                         arguments = '', ), 
                     content_blocks = [
                         null
                         ], 
-                    audio = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_audio.postGenerateV1ChatCompletions_200_response_choices_inner_message_audio(
+                    audio = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_audio.postGenerateV1ChatCompletions_200_response_choices_inner_message_audio(
                         transcript = '', 
                         data = '', 
                         id = '', 
                         expires_at = -9007199254740991, ), 
                     reasoning_content = '', ),
-                logprobs = test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs(
+                logprobs = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs(
                     content = [
-                        test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
+                        PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner(
                             token = '', 
                             logprob = 1.337, 
                             bytes = [
                                 -9007199254740991
                                 ], 
                             top_logprobs = [
-                                test.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
+                                PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner.postGenerateV1ChatCompletions_200_response_choices_inner_logprobs_content_inner_top_logprobs_inner(
                                     token = '', 
                                     logprob = 1.337, 
                                     bytes = [
@@ -77,19 +77,19 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInner(unittest.TestCase
                                         ], )
                                 ], )
                         ], ),
-                content_filter_results = test.models.content_filter_result.ContentFilterResult(
-                    hate = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                content_filter_results = PollinationAI_SDK.models.content_filter_result.ContentFilterResult(
+                    hate = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                         filtered = True, 
                         severity = 'safe', ), 
-                    self_harm = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                    self_harm = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                         filtered = True, 
                         severity = 'safe', ), 
                     sexual = , 
                     violence = , 
-                    jailbreak = test.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
+                    jailbreak = PollinationAI_SDK.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
                         filtered = True, 
                         detected = True, ), 
-                    protected_material_text = test.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
+                    protected_material_text = PollinationAI_SDK.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
                         filtered = True, 
                         detected = True, ), 
                     protected_material_code = , )

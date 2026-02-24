@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.error_details import ErrorDetails
+from PollinationAI_SDK.models.error_details import ErrorDetails
 
 class TestErrorDetails(unittest.TestCase):
     """ErrorDetails unit test stubs"""

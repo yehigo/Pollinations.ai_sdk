@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_messages_inner_any_of1 import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf1
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of1 import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf1
 
 class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf1(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf1 unit test stubs"""
@@ -38,7 +38,7 @@ class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf1(unittest.TestC
                 content = None,
                 role = 'developer',
                 name = '',
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', )
             )
         else:

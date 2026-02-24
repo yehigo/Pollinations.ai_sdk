@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_v1_models500_response_error import GetGenerateV1Models500ResponseError
+from PollinationAI_SDK.models.get_generate_v1_models500_response_error import GetGenerateV1Models500ResponseError
 
 class TestGetGenerateV1Models500ResponseError(unittest.TestCase):
     """GetGenerateV1Models500ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateV1Models500ResponseError(unittest.TestCase):
                 code = 'INTERNAL_ERROR',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestGetGenerateV1Models500ResponseError(unittest.TestCase):
                 code = 'INTERNAL_ERROR',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions403_response import PostGenerateV1ChatCompletions403Response
+from PollinationAI_SDK.models.post_generate_v1_chat_completions403_response import PostGenerateV1ChatCompletions403Response
 
 class TestPostGenerateV1ChatCompletions403Response(unittest.TestCase):
     """PostGenerateV1ChatCompletions403Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestPostGenerateV1ChatCompletions403Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions403Response(
                 status = 403,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_403_response_error.postGenerateV1ChatCompletions_403_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_403_response_error.postGenerateV1ChatCompletions_403_response_error(
                     code = 'FORBIDDEN', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
@@ -51,11 +51,11 @@ class TestPostGenerateV1ChatCompletions403Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions403Response(
                 status = 403,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_403_response_error.postGenerateV1ChatCompletions_403_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_403_response_error.postGenerateV1ChatCompletions_403_response_error(
                     code = 'FORBIDDEN', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 

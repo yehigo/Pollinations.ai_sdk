@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
+from PollinationAI_SDK.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
 
 class TestGetAccountUsageDaily200Response(unittest.TestCase):
     """GetAccountUsageDaily200Response unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetAccountUsageDaily200Response(unittest.TestCase):
         if include_optional:
             return GetAccountUsageDaily200Response(
                 usage = [
-                    test.models.get_account_usage_daily_200_response_usage_inner.getAccountUsageDaily_200_response_usage_inner(
+                    PollinationAI_SDK.models.get_account_usage_daily_200_response_usage_inner.getAccountUsageDaily_200_response_usage_inner(
                         date = '', 
                         model = '', 
                         meter_source = '', 
@@ -48,7 +48,7 @@ class TestGetAccountUsageDaily200Response(unittest.TestCase):
         else:
             return GetAccountUsageDaily200Response(
                 usage = [
-                    test.models.get_account_usage_daily_200_response_usage_inner.getAccountUsageDaily_200_response_usage_inner(
+                    PollinationAI_SDK.models.get_account_usage_daily_200_response_usage_inner.getAccountUsageDaily_200_response_usage_inner(
                         date = '', 
                         model = '', 
                         meter_source = '', 

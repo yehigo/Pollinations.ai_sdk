@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt400_response_error_message import GetGenerateTextPrompt400ResponseErrorMessage
+from PollinationAI_SDK.models.get_generate_text_prompt400_response_error_message import GetGenerateTextPrompt400ResponseErrorMessage
 
 class TestGetGenerateTextPrompt400ResponseErrorMessage(unittest.TestCase):
     """GetGenerateTextPrompt400ResponseErrorMessage unit test stubs"""

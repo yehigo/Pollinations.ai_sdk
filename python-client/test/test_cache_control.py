@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.cache_control import CacheControl
+from PollinationAI_SDK.models.cache_control import CacheControl
 
 class TestCacheControl(unittest.TestCase):
     """CacheControl unit test stubs"""

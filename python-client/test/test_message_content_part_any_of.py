@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of import MessageContentPartAnyOf
+from PollinationAI_SDK.models.message_content_part_any_of import MessageContentPartAnyOf
 
 class TestMessageContentPartAnyOf(unittest.TestCase):
     """MessageContentPartAnyOf unit test stubs"""
@@ -36,14 +36,14 @@ class TestMessageContentPartAnyOf(unittest.TestCase):
         if include_optional:
             return MessageContentPartAnyOf(
                 type = 'video_url',
-                video_url = test.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
+                video_url = PollinationAI_SDK.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
                     url = '', 
                     mime_type = '', )
             )
         else:
             return MessageContentPartAnyOf(
                 type = 'video_url',
-                video_url = test.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
+                video_url = PollinationAI_SDK.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
                     url = '', 
                     mime_type = '', ),
         )

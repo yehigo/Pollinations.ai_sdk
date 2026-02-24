@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions400_response import PostGenerateV1ChatCompletions400Response
+from PollinationAI_SDK.models.post_generate_v1_chat_completions400_response import PostGenerateV1ChatCompletions400Response
 
 class TestPostGenerateV1ChatCompletions400Response(unittest.TestCase):
     """PostGenerateV1ChatCompletions400Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestPostGenerateV1ChatCompletions400Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions400Response(
                 status = 400,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_400_response_error.postGenerateV1ChatCompletions_400_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_400_response_error.postGenerateV1ChatCompletions_400_response_error(
                     code = 'BAD_REQUEST', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.validation_error_details.ValidationErrorDetails(
+                    details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                         name = '', 
                         stack = '', 
                         form_errors = [
@@ -59,11 +59,11 @@ class TestPostGenerateV1ChatCompletions400Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions400Response(
                 status = 400,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_400_response_error.postGenerateV1ChatCompletions_400_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_400_response_error.postGenerateV1ChatCompletions_400_response_error(
                     code = 'BAD_REQUEST', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.validation_error_details.ValidationErrorDetails(
+                    details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                         name = '', 
                         stack = '', 
                         form_errors = [

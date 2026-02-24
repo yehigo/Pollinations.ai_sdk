@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
+from PollinationAI_SDK.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_v1_models200_response_data_inner import GetGenerateV1Models200ResponseDataInner
+from PollinationAI_SDK.models.get_generate_v1_models200_response_data_inner import GetGenerateV1Models200ResponseDataInner
 
 # TODO update the JSON string below
 json = "{}"

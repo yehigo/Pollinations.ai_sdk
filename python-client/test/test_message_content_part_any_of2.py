@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of2 import MessageContentPartAnyOf2
+from PollinationAI_SDK.models.message_content_part_any_of2 import MessageContentPartAnyOf2
 
 class TestMessageContentPartAnyOf2(unittest.TestCase):
     """MessageContentPartAnyOf2 unit test stubs"""
@@ -36,19 +36,19 @@ class TestMessageContentPartAnyOf2(unittest.TestCase):
         if include_optional:
             return MessageContentPartAnyOf2(
                 type = 'file',
-                file = test.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
+                file = PollinationAI_SDK.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
                     file_data = '', 
                     file_id = '', 
                     file_name = '', 
                     file_url = '', 
                     mime_type = '', ),
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', )
             )
         else:
             return MessageContentPartAnyOf2(
                 type = 'file',
-                file = test.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
+                file = PollinationAI_SDK.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
                     file_data = '', 
                     file_id = '', 
                     file_name = '', 

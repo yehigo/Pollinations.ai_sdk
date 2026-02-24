@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_message import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessage
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_message import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessage
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessage(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerMessage unit test stubs"""
@@ -37,21 +37,21 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessage(unittest.T
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessage(
                 content = '',
                 tool_calls = [
-                    test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner(
                         id = '', 
                         type = 'function', 
-                        function = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
+                        function = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
                             name = '', 
                             arguments = '', ), )
                     ],
                 role = 'assistant',
-                function_call = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
+                function_call = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
                     name = '', 
                     arguments = '', ),
                 content_blocks = [
                     null
                     ],
-                audio = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_audio.postGenerateV1ChatCompletions_200_response_choices_inner_message_audio(
+                audio = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_audio.postGenerateV1ChatCompletions_200_response_choices_inner_message_audio(
                     transcript = '', 
                     data = '', 
                     id = '', 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_function_call_any_of import PostGenerateV1ChatCompletionsRequestFunctionCallAnyOf
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_function_call_any_of import PostGenerateV1ChatCompletionsRequestFunctionCallAnyOf
 
 class TestPostGenerateV1ChatCompletionsRequestFunctionCallAnyOf(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestFunctionCallAnyOf unit test stubs"""

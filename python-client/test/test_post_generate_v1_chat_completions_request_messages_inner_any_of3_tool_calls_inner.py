@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_messages_inner_any_of3_tool_calls_inner import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of3_tool_calls_inner import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner
 
 class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner unit test stubs"""
@@ -37,7 +37,7 @@ class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner(
             return PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner(
                 id = '',
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
                     name = '', 
                     arguments = '', )
             )
@@ -45,7 +45,7 @@ class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner(
             return PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3ToolCallsInner(
                 id = '',
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
                     name = '', 
                     arguments = '', ),
         )

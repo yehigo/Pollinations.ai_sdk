@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of1_input_audio import MessageContentPartAnyOf1InputAudio
+from PollinationAI_SDK.models.message_content_part_any_of1_input_audio import MessageContentPartAnyOf1InputAudio
 
 class TestMessageContentPartAnyOf1InputAudio(unittest.TestCase):
     """MessageContentPartAnyOf1InputAudio unit test stubs"""

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.post_generate_v1_chat_completions401_response_error_message import PostGenerateV1ChatCompletions401ResponseErrorMessage
+from PollinationAI_SDK.models.post_generate_v1_chat_completions401_response_error_message import PostGenerateV1ChatCompletions401ResponseErrorMessage
 
 # TODO update the JSON string below
 json = "{}"

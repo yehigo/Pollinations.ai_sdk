@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_image_models200_response_inner_pricing import GetGenerateImageModels200ResponseInnerPricing
+from PollinationAI_SDK.models.get_generate_image_models200_response_inner_pricing import GetGenerateImageModels200ResponseInnerPricing
 
 # TODO update the JSON string below
 json = "{}"

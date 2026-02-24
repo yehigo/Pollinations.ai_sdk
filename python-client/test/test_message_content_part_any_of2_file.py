@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of2_file import MessageContentPartAnyOf2File
+from PollinationAI_SDK.models.message_content_part_any_of2_file import MessageContentPartAnyOf2File
 
 class TestMessageContentPartAnyOf2File(unittest.TestCase):
     """MessageContentPartAnyOf2File unit test stubs"""

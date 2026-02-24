@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_account_key200_response_permissions import GetAccountKey200ResponsePermissions
+from PollinationAI_SDK.models.get_account_key200_response_permissions import GetAccountKey200ResponsePermissions
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt403_response_error_message import GetGenerateTextPrompt403ResponseErrorMessage
+from PollinationAI_SDK.models.get_generate_text_prompt403_response_error_message import GetGenerateTextPrompt403ResponseErrorMessage
 
 class TestGetGenerateTextPrompt403ResponseErrorMessage(unittest.TestCase):
     """GetGenerateTextPrompt403ResponseErrorMessage unit test stubs"""

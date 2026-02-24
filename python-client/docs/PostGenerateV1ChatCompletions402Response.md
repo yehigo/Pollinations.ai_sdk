@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.post_generate_v1_chat_completions402_response import PostGenerateV1ChatCompletions402Response
+from PollinationAI_SDK.models.post_generate_v1_chat_completions402_response import PostGenerateV1ChatCompletions402Response
 
 # TODO update the JSON string below
 json = "{}"

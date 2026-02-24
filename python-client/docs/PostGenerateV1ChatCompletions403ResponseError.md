@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.post_generate_v1_chat_completions403_response_error import PostGenerateV1ChatCompletions403ResponseError
+from PollinationAI_SDK.models.post_generate_v1_chat_completions403_response_error import PostGenerateV1ChatCompletions403ResponseError
 
 # TODO update the JSON string below
 json = "{}"

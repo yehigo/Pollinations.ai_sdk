@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_tools_inner_any_of import PostGenerateV1ChatCompletionsRequestToolsInnerAnyOf
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tools_inner_any_of import PostGenerateV1ChatCompletionsRequestToolsInnerAnyOf
 
 class TestPostGenerateV1ChatCompletionsRequestToolsInnerAnyOf(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestToolsInnerAnyOf unit test stubs"""
@@ -36,7 +36,7 @@ class TestPostGenerateV1ChatCompletionsRequestToolsInnerAnyOf(unittest.TestCase)
         if include_optional:
             return PostGenerateV1ChatCompletionsRequestToolsInnerAnyOf(
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_tools_inner_any_of_function.postGenerateV1ChatCompletions_request_tools_inner_anyOf_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tools_inner_any_of_function.postGenerateV1ChatCompletions_request_tools_inner_anyOf_function(
                     description = '', 
                     name = '', 
                     parameters = {
@@ -47,7 +47,7 @@ class TestPostGenerateV1ChatCompletionsRequestToolsInnerAnyOf(unittest.TestCase)
         else:
             return PostGenerateV1ChatCompletionsRequestToolsInnerAnyOf(
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_tools_inner_any_of_function.postGenerateV1ChatCompletions_request_tools_inner_anyOf_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tools_inner_any_of_function.postGenerateV1ChatCompletions_request_tools_inner_anyOf_function(
                     description = '', 
                     name = '', 
                     parameters = {

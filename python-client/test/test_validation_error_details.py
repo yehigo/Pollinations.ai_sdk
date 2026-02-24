@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.validation_error_details import ValidationErrorDetails
+from PollinationAI_SDK.models.validation_error_details import ValidationErrorDetails
 
 class TestValidationErrorDetails(unittest.TestCase):
     """ValidationErrorDetails unit test stubs"""

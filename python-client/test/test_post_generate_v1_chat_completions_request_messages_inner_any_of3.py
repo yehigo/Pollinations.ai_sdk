@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_messages_inner_any_of3 import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of3 import PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3
 
 class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3 unit test stubs"""
@@ -39,17 +39,17 @@ class TestPostGenerateV1ChatCompletionsRequestMessagesInnerAnyOf3(unittest.TestC
                 role = 'assistant',
                 name = '',
                 tool_calls = [
-                    test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner(
                         id = '', 
                         type = 'function', 
-                        function = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
+                        function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_tool_calls_inner_function.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_tool_calls_inner_function(
                             name = '', 
                             arguments = '', ), )
                     ],
-                function_call = test.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
+                function_call = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_messages_inner_any_of_3_function_call.postGenerateV1ChatCompletions_request_messages_inner_anyOf_3_function_call(
                     name = '', 
                     arguments = '', ),
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', )
             )
         else:

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt401_response_error import GetGenerateTextPrompt401ResponseError
+from PollinationAI_SDK.models.get_generate_text_prompt401_response_error import GetGenerateTextPrompt401ResponseError
 
 class TestGetGenerateTextPrompt401ResponseError(unittest.TestCase):
     """GetGenerateTextPrompt401ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateTextPrompt401ResponseError(unittest.TestCase):
                 code = 'UNAUTHORIZED',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestGetGenerateTextPrompt401ResponseError(unittest.TestCase):
                 code = 'UNAUTHORIZED',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

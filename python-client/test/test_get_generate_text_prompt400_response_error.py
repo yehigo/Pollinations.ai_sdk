@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt400_response_error import GetGenerateTextPrompt400ResponseError
+from PollinationAI_SDK.models.get_generate_text_prompt400_response_error import GetGenerateTextPrompt400ResponseError
 
 class TestGetGenerateTextPrompt400ResponseError(unittest.TestCase):
     """GetGenerateTextPrompt400ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateTextPrompt400ResponseError(unittest.TestCase):
                 code = 'BAD_REQUEST',
                 message = None,
                 timestamp = '',
-                details = test.models.validation_error_details.ValidationErrorDetails(
+                details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                     name = '', 
                     stack = '', 
                     form_errors = [
@@ -57,7 +57,7 @@ class TestGetGenerateTextPrompt400ResponseError(unittest.TestCase):
                 code = 'BAD_REQUEST',
                 message = None,
                 timestamp = '',
-                details = test.models.validation_error_details.ValidationErrorDetails(
+                details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                     name = '', 
                     stack = '', 
                     form_errors = [

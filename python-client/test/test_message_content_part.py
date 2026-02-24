@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part import MessageContentPart
+from PollinationAI_SDK.models.message_content_part import MessageContentPart
 
 class TestMessageContentPart(unittest.TestCase):
     """MessageContentPart unit test stubs"""
@@ -37,19 +37,19 @@ class TestMessageContentPart(unittest.TestCase):
             return MessageContentPart(
                 type = '',
                 text = '',
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', ),
-                image_url = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
+                image_url = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
                     url = '', 
                     detail = 'auto', 
                     mime_type = '', ),
-                video_url = test.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
+                video_url = PollinationAI_SDK.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
                     url = '', 
                     mime_type = '', ),
-                input_audio = test.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
+                input_audio = PollinationAI_SDK.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
                     data = '', 
                     format = 'wav', ),
-                file = test.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
+                file = PollinationAI_SDK.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
                     file_data = '', 
                     file_id = '', 
                     file_name = '', 
@@ -60,17 +60,17 @@ class TestMessageContentPart(unittest.TestCase):
             return MessageContentPart(
                 type = '',
                 text = '',
-                image_url = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
+                image_url = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
                     url = '', 
                     detail = 'auto', 
                     mime_type = '', ),
-                video_url = test.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
+                video_url = PollinationAI_SDK.models.message_content_part_any_of_video_url.MessageContentPart_anyOf_video_url(
                     url = '', 
                     mime_type = '', ),
-                input_audio = test.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
+                input_audio = PollinationAI_SDK.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
                     data = '', 
                     format = 'wav', ),
-                file = test.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
+                file = PollinationAI_SDK.models.message_content_part_any_of_2_file.MessageContentPart_anyOf_2_file(
                     file_data = '', 
                     file_id = '', 
                     file_name = '', 

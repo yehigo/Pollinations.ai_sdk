@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_account_key200_response_permissions import GetAccountKey200ResponsePermissions
+from PollinationAI_SDK.models.get_account_key200_response_permissions import GetAccountKey200ResponsePermissions
 
 class TestGetAccountKey200ResponsePermissions(unittest.TestCase):
     """GetAccountKey200ResponsePermissions unit test stubs"""

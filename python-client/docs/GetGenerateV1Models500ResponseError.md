@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_v1_models500_response_error import GetGenerateV1Models500ResponseError
+from PollinationAI_SDK.models.get_generate_v1_models500_response_error import GetGenerateV1Models500ResponseError
 
 # TODO update the JSON string below
 json = "{}"

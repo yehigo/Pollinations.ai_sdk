@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions403_response_error import PostGenerateV1ChatCompletions403ResponseError
+from PollinationAI_SDK.models.post_generate_v1_chat_completions403_response_error import PostGenerateV1ChatCompletions403ResponseError
 
 class TestPostGenerateV1ChatCompletions403ResponseError(unittest.TestCase):
     """PostGenerateV1ChatCompletions403ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestPostGenerateV1ChatCompletions403ResponseError(unittest.TestCase):
                 code = 'FORBIDDEN',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestPostGenerateV1ChatCompletions403ResponseError(unittest.TestCase):
                 code = 'FORBIDDEN',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

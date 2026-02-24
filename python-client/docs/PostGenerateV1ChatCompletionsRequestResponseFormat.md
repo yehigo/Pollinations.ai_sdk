@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.post_generate_v1_chat_completions_request_response_format import PostGenerateV1ChatCompletionsRequestResponseFormat
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_response_format import PostGenerateV1ChatCompletionsRequestResponseFormat
 
 # TODO update the JSON string below
 json = "{}"

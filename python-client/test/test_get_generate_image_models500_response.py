@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_image_models500_response import GetGenerateImageModels500Response
+from PollinationAI_SDK.models.get_generate_image_models500_response import GetGenerateImageModels500Response
 
 class TestGetGenerateImageModels500Response(unittest.TestCase):
     """GetGenerateImageModels500Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestGetGenerateImageModels500Response(unittest.TestCase):
             return GetGenerateImageModels500Response(
                 status = 500,
                 success = false,
-                error = test.models.get_generate_image_models_500_response_error.getGenerateImageModels_500_response_error(
+                error = PollinationAI_SDK.models.get_generate_image_models_500_response_error.getGenerateImageModels_500_response_error(
                     code = 'INTERNAL_ERROR', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
@@ -51,11 +51,11 @@ class TestGetGenerateImageModels500Response(unittest.TestCase):
             return GetGenerateImageModels500Response(
                 status = 500,
                 success = false,
-                error = test.models.get_generate_image_models_500_response_error.getGenerateImageModels_500_response_error(
+                error = PollinationAI_SDK.models.get_generate_image_models_500_response_error.getGenerateImageModels_500_response_error(
                     code = 'INTERNAL_ERROR', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 

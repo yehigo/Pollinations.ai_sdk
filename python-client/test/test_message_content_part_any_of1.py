@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of1 import MessageContentPartAnyOf1
+from PollinationAI_SDK.models.message_content_part_any_of1 import MessageContentPartAnyOf1
 
 class TestMessageContentPartAnyOf1(unittest.TestCase):
     """MessageContentPartAnyOf1 unit test stubs"""
@@ -36,16 +36,16 @@ class TestMessageContentPartAnyOf1(unittest.TestCase):
         if include_optional:
             return MessageContentPartAnyOf1(
                 type = 'input_audio',
-                input_audio = test.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
+                input_audio = PollinationAI_SDK.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
                     data = '', 
                     format = 'wav', ),
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', )
             )
         else:
             return MessageContentPartAnyOf1(
                 type = 'input_audio',
-                input_audio = test.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
+                input_audio = PollinationAI_SDK.models.message_content_part_any_of_1_input_audio.MessageContentPart_anyOf_1_input_audio(
                     data = '', 
                     format = 'wav', ),
         )

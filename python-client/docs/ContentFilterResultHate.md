@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.content_filter_result_hate import ContentFilterResultHate
+from PollinationAI_SDK.models.content_filter_result_hate import ContentFilterResultHate
 
 # TODO update the JSON string below
 json = "{}"

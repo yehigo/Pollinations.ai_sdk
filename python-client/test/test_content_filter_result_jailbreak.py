@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.content_filter_result_jailbreak import ContentFilterResultJailbreak
+from PollinationAI_SDK.models.content_filter_result_jailbreak import ContentFilterResultJailbreak
 
 class TestContentFilterResultJailbreak(unittest.TestCase):
     """ContentFilterResultJailbreak unit test stubs"""

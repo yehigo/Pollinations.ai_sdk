@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt402_response import GetGenerateTextPrompt402Response
+from PollinationAI_SDK.models.get_generate_text_prompt402_response import GetGenerateTextPrompt402Response
 
 class TestGetGenerateTextPrompt402Response(unittest.TestCase):
     """GetGenerateTextPrompt402Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestGetGenerateTextPrompt402Response(unittest.TestCase):
             return GetGenerateTextPrompt402Response(
                 status = 402,
                 success = false,
-                error = test.models.get_generate_text_prompt_402_response_error.getGenerateText_prompt_402_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_402_response_error.getGenerateText_prompt_402_response_error(
                     code = 'PAYMENT_REQUIRED', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
@@ -51,11 +51,11 @@ class TestGetGenerateTextPrompt402Response(unittest.TestCase):
             return GetGenerateTextPrompt402Response(
                 status = 402,
                 success = false,
-                error = test.models.get_generate_text_prompt_402_response_error.getGenerateText_prompt_402_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_402_response_error.getGenerateText_prompt_402_response_error(
                     code = 'PAYMENT_REQUIRED', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 

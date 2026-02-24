@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt402_response_error import GetGenerateTextPrompt402ResponseError
+from PollinationAI_SDK.models.get_generate_text_prompt402_response_error import GetGenerateTextPrompt402ResponseError
 
 class TestGetGenerateTextPrompt402ResponseError(unittest.TestCase):
     """GetGenerateTextPrompt402ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateTextPrompt402ResponseError(unittest.TestCase):
                 code = 'PAYMENT_REQUIRED',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestGetGenerateTextPrompt402ResponseError(unittest.TestCase):
                 code = 'PAYMENT_REQUIRED',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

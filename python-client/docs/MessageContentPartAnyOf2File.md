@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.message_content_part_any_of2_file import MessageContentPartAnyOf2File
+from PollinationAI_SDK.models.message_content_part_any_of2_file import MessageContentPartAnyOf2File
 
 # TODO update the JSON string below
 json = "{}"

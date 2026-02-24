@@ -1,4 +1,5 @@
-# pollination_sdk.GenPollinationsAiApi
+# PollinationAI_SDK.GenPollinationsAiApi
+The PollinationAI SDK for Flutter/Dart enables seamless access to AI-powered media generation tools, including images, audio, and text, via the Pollinations platform.
 
 All URIs are relative to *https://gen.pollinations.ai*
 
@@ -27,14 +28,14 @@ Get pollen balance. Returns the key's remaining budget if set, otherwise the use
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_account_balance200_response import GetAccountBalance200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_account_balance200_response import GetAccountBalance200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -44,14 +45,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_account_balance()
@@ -100,14 +101,14 @@ Get API key status and information. Returns key validity, type, expiry, permissi
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_account_key200_response import GetAccountKey200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_account_key200_response import GetAccountKey200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -117,14 +118,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_account_key()
@@ -172,14 +173,14 @@ Get user profile info (name, email, GitHub username, tier, createdAt, nextResetA
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_account_profile200_response import GetAccountProfile200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_account_profile200_response import GetAccountProfile200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -189,14 +190,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_account_profile()
@@ -245,14 +246,14 @@ Get request history and spending data. Supports JSON and CSV formats. Requires `
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_account_usage200_response import GetAccountUsage200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_account_usage200_response import GetAccountUsage200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -262,14 +263,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
     format = json # str |  (optional) (default to json)
     limit = 100 # float |  (optional) (default to 100)
     before = 'before_example' # str |  (optional)
@@ -326,14 +327,14 @@ Get daily aggregated usage data (last 90 days). Supports JSON and CSV formats. R
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -343,14 +344,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
     format = json # str |  (optional) (default to json)
 
     try:
@@ -403,14 +404,14 @@ Get a list of available image generation models with pricing, capabilities, and 
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -420,14 +421,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_generate_image_models()
@@ -489,13 +490,13 @@ API keys can be created from your dashboard at enter.pollinations.ai.
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -505,14 +506,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
     prompt = 'a beautiful sunset over mountains' # str | Text description of the image or video to generate
     model = zimage # str | AI model. Image: flux, zimage, turbo, gptimage, kontext, seedream, seedream-pro, nanobanana. Video: veo, seedance, seedance-pro (optional) (default to zimage)
     width = 1024 # int | Image width in pixels (optional) (default to 1024)
@@ -594,14 +595,14 @@ Get a list of available text generation models with pricing, capabilities, and m
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -611,14 +612,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_generate_text_models()
@@ -674,13 +675,13 @@ API keys can be created from your dashboard at enter.pollinations.ai.
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -690,14 +691,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
     prompt = 'Write a haiku about coding' # str | Text prompt for generation
     model = openai # str | Text model to use for generation (optional) (default to openai)
     seed = 0 # int | Random seed for reproducible results. Use -1 for random. (optional) (default to 0)
@@ -765,14 +766,14 @@ Get available text models (OpenAI-compatible). If an API key with model restrict
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.get_generate_v1_models200_response import GetGenerateV1Models200Response
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.get_generate_v1_models200_response import GetGenerateV1Models200Response
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -782,14 +783,14 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
         api_response = api_instance.get_generate_v1_models()
@@ -848,15 +849,15 @@ Both key types consume Pollen. Secret keys have no rate limits.
 * Bearer (API Key) Authentication (bearerAuth):
 
 ```python
-import pollination_sdk
-from pollination_sdk.models.post_generate_v1_chat_completions200_response import PostGenerateV1ChatCompletions200Response
-from pollination_sdk.models.post_generate_v1_chat_completions_request import PostGenerateV1ChatCompletionsRequest
-from pollination_sdk.rest import ApiException
+import PollinationAI_SDK
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response import PostGenerateV1ChatCompletions200Response
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request import PostGenerateV1ChatCompletionsRequest
+from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://gen.pollinations.ai
 # See configuration.py for a list of all supported configuration parameters.
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     host = "https://gen.pollinations.ai"
 )
 
@@ -866,15 +867,15 @@ configuration = pollination_sdk.Configuration(
 # satisfies your auth use case.
 
 # Configure Bearer authorization (API Key): bearerAuth
-configuration = pollination_sdk.Configuration(
+configuration = PollinationAI_SDK.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
 
 # Enter a context with an instance of the API client
-with pollination_sdk.ApiClient(configuration) as api_client:
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = pollination_sdk.GenPollinationsAiApi(api_client)
-    post_generate_v1_chat_completions_request = pollination_sdk.PostGenerateV1ChatCompletionsRequest() # PostGenerateV1ChatCompletionsRequest |  (optional)
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
+    post_generate_v1_chat_completions_request = PollinationAI_SDK.PostGenerateV1ChatCompletionsRequest() # PostGenerateV1ChatCompletionsRequest |  (optional)
 
     try:
         api_response = api_instance.post_generate_v1_chat_completions(post_generate_v1_chat_completions_request=post_generate_v1_chat_completions_request)

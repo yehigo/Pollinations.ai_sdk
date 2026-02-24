@@ -18,8 +18,8 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "pollination-sdk"
-VERSION = "1.0.0"
+NAME = "PollinationAI_SDK"
+VERSION = "1.0.1"
 PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
     "urllib3 >= 2.1.0, < 3.0.0",
@@ -34,7 +34,7 @@ setup(
     description="pollinations.ai API",
     author="OpenAPI Generator community",
     author_email="team@openapitools.org",
-    url="",
+    url="https://github.com/yehigo/pollinations.ai",
     keywords=["OpenAPI", "OpenAPI-Generator", "pollinations.ai API"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
@@ -43,5 +43,5 @@ setup(
     long_description="""\
     Documentation for &#x60;gen.pollinations.ai&#x60; - the pollinations.ai API gateway.  [📝 Edit docs](https://github.com/pollinations/pollinations/edit/master/enter.pollinations.ai/src/routes/docs.ts)  ## Quick Start  Get your API key at https://enter.pollinations.ai  ### Image Generation &#x60;&#x60;&#x60;bash curl &#39;https://gen.pollinations.ai/image/a%20cat?model&#x3D;flux&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39; &#x60;&#x60;&#x60;  ### Text Generation &#x60;&#x60;&#x60;bash curl &#39;https://gen.pollinations.ai/v1/chat/completions&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39; \\   -H &#39;Content-Type: application/json&#39; \\   -d &#39;{\&quot;model\&quot;: \&quot;openai\&quot;, \&quot;messages\&quot;: [{\&quot;role\&quot;: \&quot;user\&quot;, \&quot;content\&quot;: \&quot;Hello\&quot;}]}&#39; &#x60;&#x60;&#x60;  ### Vision (Image Input) &#x60;&#x60;&#x60;bash curl &#39;https://gen.pollinations.ai/v1/chat/completions&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39; \\   -H &#39;Content-Type: application/json&#39; \\   -d &#39;{\&quot;model\&quot;: \&quot;openai\&quot;, \&quot;messages\&quot;: [{\&quot;role\&quot;: \&quot;user\&quot;, \&quot;content\&quot;: [{\&quot;type\&quot;: \&quot;text\&quot;, \&quot;text\&quot;: \&quot;Describe this image\&quot;}, {\&quot;type\&quot;: \&quot;image_url\&quot;, \&quot;image_url\&quot;: {\&quot;url\&quot;: \&quot;https://example.com/image.jpg\&quot;}}]}]}&#39; &#x60;&#x60;&#x60;  **Gemini Tools:** &#x60;gemini&#x60;, &#x60;gemini-large&#x60; have &#x60;code_execution&#x60; enabled (can generate images/plots). &#x60;gemini-search&#x60; has &#x60;google_search&#x60; enabled. Responses may include &#x60;content_blocks&#x60; with &#x60;image_url&#x60;, &#x60;text&#x60;, or &#x60;thinking&#x60; types.  ### Simple Text Endpoint &#x60;&#x60;&#x60;bash curl &#39;https://gen.pollinations.ai/text/hello?key&#x3D;YOUR_API_KEY&#39; &#x60;&#x60;&#x60;  ### Streaming &#x60;&#x60;&#x60;bash curl &#39;https://gen.pollinations.ai/v1/chat/completions&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39; \\   -H &#39;Content-Type: application/json&#39; \\   -d &#39;{\&quot;model\&quot;: \&quot;openai\&quot;, \&quot;messages\&quot;: [{\&quot;role\&quot;: \&quot;user\&quot;, \&quot;content\&quot;: \&quot;Write a poem\&quot;}], \&quot;stream\&quot;: true}&#39; \\   --no-buffer &#x60;&#x60;&#x60;  ### Model Discovery **Always check available models before testing:**  - **Image models:** [/image/models](https://gen.pollinations.ai/image/models) - **Text models:** [/v1/models](https://gen.pollinations.ai/v1/models)  ## Authentication  **Two key types (both consume Pollen from your balance):** - **Publishable Keys (&#x60;pk_&#x60;):** ⚠️ **Beta - not yet ready for production use.** For client-side apps, IP rate-limited (1 pollen per IP per hour). **Warning:** Exposing in public code will consume your Pollen if your app gets traffic. - **Secret Keys (&#x60;sk_&#x60;):** Server-side only, no rate limits. Keep secret - never expose publicly.  **Auth methods:** 1. Header: &#x60;Authorization: Bearer YOUR_API_KEY&#x60; 2. Query param: &#x60;?key&#x3D;YOUR_API_KEY&#x60;  ## Account Management  Check your balance and usage:  &#x60;&#x60;&#x60;bash # Check pollen balance curl &#39;https://gen.pollinations.ai/account/balance&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39;  # Get profile info curl &#39;https://gen.pollinations.ai/account/profile&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39;  # View usage history curl &#39;https://gen.pollinations.ai/account/usage&#39; \\   -H &#39;Authorization: Bearer YOUR_API_KEY&#39; &#x60;&#x60;&#x60;
     """,  # noqa: E501
-    package_data={"pollination_sdk": ["py.typed"]},
+    package_data={"PollinationAI_SDK": ["py.typed"]},
 )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions400_response_error import PostGenerateV1ChatCompletions400ResponseError
+from PollinationAI_SDK.models.post_generate_v1_chat_completions400_response_error import PostGenerateV1ChatCompletions400ResponseError
 
 class TestPostGenerateV1ChatCompletions400ResponseError(unittest.TestCase):
     """PostGenerateV1ChatCompletions400ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestPostGenerateV1ChatCompletions400ResponseError(unittest.TestCase):
                 code = 'BAD_REQUEST',
                 message = None,
                 timestamp = '',
-                details = test.models.validation_error_details.ValidationErrorDetails(
+                details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                     name = '', 
                     stack = '', 
                     form_errors = [
@@ -57,7 +57,7 @@ class TestPostGenerateV1ChatCompletions400ResponseError(unittest.TestCase):
                 code = 'BAD_REQUEST',
                 message = None,
                 timestamp = '',
-                details = test.models.validation_error_details.ValidationErrorDetails(
+                details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                     name = '', 
                     stack = '', 
                     form_errors = [

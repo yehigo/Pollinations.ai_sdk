@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_image_models500_response_error import GetGenerateImageModels500ResponseError
+from PollinationAI_SDK.models.get_generate_image_models500_response_error import GetGenerateImageModels500ResponseError
 
 class TestGetGenerateImageModels500ResponseError(unittest.TestCase):
     """GetGenerateImageModels500ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateImageModels500ResponseError(unittest.TestCase):
                 code = 'INTERNAL_ERROR',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestGetGenerateImageModels500ResponseError(unittest.TestCase):
                 code = 'INTERNAL_ERROR',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

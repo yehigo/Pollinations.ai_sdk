@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.content_filter_result import ContentFilterResult
+from PollinationAI_SDK.models.content_filter_result import ContentFilterResult
 
 class TestContentFilterResult(unittest.TestCase):
     """ContentFilterResult unit test stubs"""
@@ -35,25 +35,25 @@ class TestContentFilterResult(unittest.TestCase):
         model = ContentFilterResult()
         if include_optional:
             return ContentFilterResult(
-                hate = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                hate = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                     filtered = True, 
                     severity = 'safe', ),
-                self_harm = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                self_harm = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                     filtered = True, 
                     severity = 'safe', ),
-                sexual = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                sexual = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                     filtered = True, 
                     severity = 'safe', ),
-                violence = test.models.content_filter_result_hate.ContentFilterResult_hate(
+                violence = PollinationAI_SDK.models.content_filter_result_hate.ContentFilterResult_hate(
                     filtered = True, 
                     severity = 'safe', ),
-                jailbreak = test.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
+                jailbreak = PollinationAI_SDK.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
                     filtered = True, 
                     detected = True, ),
-                protected_material_text = test.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
+                protected_material_text = PollinationAI_SDK.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
                     filtered = True, 
                     detected = True, ),
-                protected_material_code = test.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
+                protected_material_code = PollinationAI_SDK.models.content_filter_result_jailbreak.ContentFilterResult_jailbreak(
                     filtered = True, 
                     detected = True, )
             )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_tool_choice_any_of import PostGenerateV1ChatCompletionsRequestToolChoiceAnyOf
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tool_choice_any_of import PostGenerateV1ChatCompletionsRequestToolChoiceAnyOf
 
 class TestPostGenerateV1ChatCompletionsRequestToolChoiceAnyOf(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestToolChoiceAnyOf unit test stubs"""
@@ -36,13 +36,13 @@ class TestPostGenerateV1ChatCompletionsRequestToolChoiceAnyOf(unittest.TestCase)
         if include_optional:
             return PostGenerateV1ChatCompletionsRequestToolChoiceAnyOf(
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_tool_choice_any_of_function.postGenerateV1ChatCompletions_request_tool_choice_anyOf_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tool_choice_any_of_function.postGenerateV1ChatCompletions_request_tool_choice_anyOf_function(
                     name = '', )
             )
         else:
             return PostGenerateV1ChatCompletionsRequestToolChoiceAnyOf(
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_request_tool_choice_any_of_function.postGenerateV1ChatCompletions_request_tool_choice_anyOf_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_tool_choice_any_of_function.postGenerateV1ChatCompletions_request_tool_choice_anyOf_function(
                     name = '', ),
         )
         """

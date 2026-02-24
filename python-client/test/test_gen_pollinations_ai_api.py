@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.api.gen_pollinations_ai_api import GenPollinationsAiApi
+from PollinationAI_SDK.api.gen_pollinations_ai_api import GenPollinationsAiApi
 
 
 class TestGenPollinationsAiApi(unittest.TestCase):

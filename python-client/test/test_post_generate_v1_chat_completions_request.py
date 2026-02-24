@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request import PostGenerateV1ChatCompletionsRequest
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request import PostGenerateV1ChatCompletionsRequest
 
 class TestPostGenerateV1ChatCompletionsRequest(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequest unit test stubs"""
@@ -42,7 +42,7 @@ class TestPostGenerateV1ChatCompletionsRequest(unittest.TestCase):
                 modalities = [
                     'text'
                     ],
-                audio = test.models.post_generate_v1_chat_completions_request_audio.postGenerateV1ChatCompletions_request_audio(
+                audio = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_audio.postGenerateV1ChatCompletions_request_audio(
                     voice = 'alloy', 
                     format = 'wav', ),
                 frequency_penalty = -2,
@@ -58,9 +58,9 @@ class TestPostGenerateV1ChatCompletionsRequest(unittest.TestCase):
                 seed = -1,
                 stop = None,
                 stream = True,
-                stream_options = test.models.post_generate_v1_chat_completions_request_stream_options.postGenerateV1ChatCompletions_request_stream_options(
+                stream_options = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_stream_options.postGenerateV1ChatCompletions_request_stream_options(
                     include_usage = True, ),
-                thinking = test.models.post_generate_v1_chat_completions_request_thinking.postGenerateV1ChatCompletions_request_thinking(
+                thinking = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_thinking.postGenerateV1ChatCompletions_request_thinking(
                     type = 'disabled', 
                     budget_tokens = 1, ),
                 reasoning_effort = 'none',
@@ -75,7 +75,7 @@ class TestPostGenerateV1ChatCompletionsRequest(unittest.TestCase):
                 user = '',
                 function_call = None,
                 functions = [
-                    test.models.post_generate_v1_chat_completions_request_functions_inner.postGenerateV1ChatCompletions_request_functions_inner(
+                    PollinationAI_SDK.models.post_generate_v1_chat_completions_request_functions_inner.postGenerateV1ChatCompletions_request_functions_inner(
                         description = '', 
                         name = '', 
                         parameters = {

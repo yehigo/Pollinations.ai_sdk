@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_account_key200_response import GetAccountKey200Response
+from PollinationAI_SDK.models.get_account_key200_response import GetAccountKey200Response
 
 class TestGetAccountKey200Response(unittest.TestCase):
     """GetAccountKey200Response unit test stubs"""
@@ -40,7 +40,7 @@ class TestGetAccountKey200Response(unittest.TestCase):
                 name = '',
                 expires_at = '',
                 expires_in = 1.337,
-                permissions = test.models.get_account_key_200_response_permissions.getAccountKey_200_response_permissions(
+                permissions = PollinationAI_SDK.models.get_account_key_200_response_permissions.getAccountKey_200_response_permissions(
                     models = [
                         ''
                         ], 
@@ -57,7 +57,7 @@ class TestGetAccountKey200Response(unittest.TestCase):
                 name = '',
                 expires_at = '',
                 expires_in = 1.337,
-                permissions = test.models.get_account_key_200_response_permissions.getAccountKey_200_response_permissions(
+                permissions = PollinationAI_SDK.models.get_account_key_200_response_permissions.getAccountKey_200_response_permissions(
                     models = [
                         ''
                         ], 

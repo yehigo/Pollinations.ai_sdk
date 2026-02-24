@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.validation_error_details import ValidationErrorDetails
+from PollinationAI_SDK.models.validation_error_details import ValidationErrorDetails
 
 # TODO update the JSON string below
 json = "{}"

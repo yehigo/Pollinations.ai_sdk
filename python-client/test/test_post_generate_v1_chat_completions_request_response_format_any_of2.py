@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_response_format_any_of2 import PostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_response_format_any_of2 import PostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2
 
 class TestPostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2 unit test stubs"""

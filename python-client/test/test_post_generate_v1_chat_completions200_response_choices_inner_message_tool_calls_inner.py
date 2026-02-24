@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_message_tool_calls_inner import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_message_tool_calls_inner import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner unit test stubs"""
@@ -37,7 +37,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsIn
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner(
                 id = '',
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
                     name = '', 
                     arguments = '', )
             )
@@ -45,7 +45,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsIn
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageToolCallsInner(
                 id = '',
                 type = 'function',
-                function = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
+                function = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_tool_calls_inner_function.postGenerateV1ChatCompletions_200_response_choices_inner_message_tool_calls_inner_function(
                     name = '', 
                     arguments = '', ),
         )

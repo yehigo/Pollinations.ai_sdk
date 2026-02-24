@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_response_format import PostGenerateV1ChatCompletionsRequestResponseFormat
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_response_format import PostGenerateV1ChatCompletionsRequestResponseFormat
 
 class TestPostGenerateV1ChatCompletionsRequestResponseFormat(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestResponseFormat unit test stubs"""
@@ -36,7 +36,7 @@ class TestPostGenerateV1ChatCompletionsRequestResponseFormat(unittest.TestCase):
         if include_optional:
             return PostGenerateV1ChatCompletionsRequestResponseFormat(
                 type = 'text',
-                json_schema = test.models.post_generate_v1_chat_completions_request_response_format_any_of_1_json_schema.postGenerateV1ChatCompletions_request_response_format_anyOf_1_json_schema(
+                json_schema = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_response_format_any_of_1_json_schema.postGenerateV1ChatCompletions_request_response_format_anyOf_1_json_schema(
                     description = '', 
                     name = '', 
                     schema = {
@@ -47,7 +47,7 @@ class TestPostGenerateV1ChatCompletionsRequestResponseFormat(unittest.TestCase):
         else:
             return PostGenerateV1ChatCompletionsRequestResponseFormat(
                 type = 'text',
-                json_schema = test.models.post_generate_v1_chat_completions_request_response_format_any_of_1_json_schema.postGenerateV1ChatCompletions_request_response_format_anyOf_1_json_schema(
+                json_schema = PollinationAI_SDK.models.post_generate_v1_chat_completions_request_response_format_any_of_1_json_schema.postGenerateV1ChatCompletions_request_response_format_anyOf_1_json_schema(
                     description = '', 
                     name = '', 
                     schema = {

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_text_prompt401_response import GetGenerateTextPrompt401Response
+from PollinationAI_SDK.models.get_generate_text_prompt401_response import GetGenerateTextPrompt401Response
 
 # TODO update the JSON string below
 json = "{}"

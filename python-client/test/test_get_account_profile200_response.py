@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_account_profile200_response import GetAccountProfile200Response
+from PollinationAI_SDK.models.get_account_profile200_response import GetAccountProfile200Response
 
 class TestGetAccountProfile200Response(unittest.TestCase):
     """GetAccountProfile200Response unit test stubs"""

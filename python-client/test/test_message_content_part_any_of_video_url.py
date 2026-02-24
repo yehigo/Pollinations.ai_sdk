@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.message_content_part_any_of_video_url import MessageContentPartAnyOfVideoUrl
+from PollinationAI_SDK.models.message_content_part_any_of_video_url import MessageContentPartAnyOfVideoUrl
 
 class TestMessageContentPartAnyOfVideoUrl(unittest.TestCase):
     """MessageContentPartAnyOfVideoUrl unit test stubs"""

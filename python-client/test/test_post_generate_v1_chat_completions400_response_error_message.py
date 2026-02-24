@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions400_response_error_message import PostGenerateV1ChatCompletions400ResponseErrorMessage
+from PollinationAI_SDK.models.post_generate_v1_chat_completions400_response_error_message import PostGenerateV1ChatCompletions400ResponseErrorMessage
 
 class TestPostGenerateV1ChatCompletions400ResponseErrorMessage(unittest.TestCase):
     """PostGenerateV1ChatCompletions400ResponseErrorMessage unit test stubs"""

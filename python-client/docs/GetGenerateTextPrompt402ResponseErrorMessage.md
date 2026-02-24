@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_text_prompt402_response_error_message import GetGenerateTextPrompt402ResponseErrorMessage
+from PollinationAI_SDK.models.get_generate_text_prompt402_response_error_message import GetGenerateTextPrompt402ResponseErrorMessage
 
 # TODO update the JSON string below
 json = "{}"

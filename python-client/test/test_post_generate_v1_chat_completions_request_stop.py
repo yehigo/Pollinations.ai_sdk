@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_stop import PostGenerateV1ChatCompletionsRequestStop
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_stop import PostGenerateV1ChatCompletionsRequestStop
 
 class TestPostGenerateV1ChatCompletionsRequestStop(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestStop unit test stubs"""

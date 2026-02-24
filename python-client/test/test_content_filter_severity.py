@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.content_filter_severity import ContentFilterSeverity
+from PollinationAI_SDK.models.content_filter_severity import ContentFilterSeverity
 
 class TestContentFilterSeverity(unittest.TestCase):
     """ContentFilterSeverity unit test stubs"""

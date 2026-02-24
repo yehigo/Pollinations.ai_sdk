@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt400_response import GetGenerateTextPrompt400Response
+from PollinationAI_SDK.models.get_generate_text_prompt400_response import GetGenerateTextPrompt400Response
 
 class TestGetGenerateTextPrompt400Response(unittest.TestCase):
     """GetGenerateTextPrompt400Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestGetGenerateTextPrompt400Response(unittest.TestCase):
             return GetGenerateTextPrompt400Response(
                 status = 400,
                 success = false,
-                error = test.models.get_generate_text_prompt_400_response_error.getGenerateText_prompt_400_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_400_response_error.getGenerateText_prompt_400_response_error(
                     code = 'BAD_REQUEST', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.validation_error_details.ValidationErrorDetails(
+                    details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                         name = '', 
                         stack = '', 
                         form_errors = [
@@ -59,11 +59,11 @@ class TestGetGenerateTextPrompt400Response(unittest.TestCase):
             return GetGenerateTextPrompt400Response(
                 status = 400,
                 success = false,
-                error = test.models.get_generate_text_prompt_400_response_error.getGenerateText_prompt_400_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_400_response_error.getGenerateText_prompt_400_response_error(
                     code = 'BAD_REQUEST', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.validation_error_details.ValidationErrorDetails(
+                    details = PollinationAI_SDK.models.validation_error_details.ValidationErrorDetails(
                         name = '', 
                         stack = '', 
                         form_errors = [

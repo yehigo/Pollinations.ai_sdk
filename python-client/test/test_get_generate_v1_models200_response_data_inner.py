@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_v1_models200_response_data_inner import GetGenerateV1Models200ResponseDataInner
+from PollinationAI_SDK.models.get_generate_v1_models200_response_data_inner import GetGenerateV1Models200ResponseDataInner
 
 class TestGetGenerateV1Models200ResponseDataInner(unittest.TestCase):
     """GetGenerateV1Models200ResponseDataInner unit test stubs"""

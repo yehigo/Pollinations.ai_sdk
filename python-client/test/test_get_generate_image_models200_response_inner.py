@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
+from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
 
 class TestGetGenerateImageModels200ResponseInner(unittest.TestCase):
     """GetGenerateImageModels200ResponseInner unit test stubs"""

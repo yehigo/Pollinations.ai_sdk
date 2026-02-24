@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.message_content_part import MessageContentPart
+from PollinationAI_SDK.models.message_content_part import MessageContentPart
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.get_generate_text_prompt402_response_error import GetGenerateTextPrompt402ResponseError
+from PollinationAI_SDK.models.get_generate_text_prompt402_response_error import GetGenerateTextPrompt402ResponseError
 
 # TODO update the JSON string below
 json = "{}"

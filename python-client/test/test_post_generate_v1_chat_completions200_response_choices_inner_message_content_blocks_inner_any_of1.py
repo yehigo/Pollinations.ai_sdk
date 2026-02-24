@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_message_content_blocks_inner_any_of1 import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_message_content_blocks_inner_any_of1 import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1 unit test stubs"""
@@ -36,7 +36,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBloc
         if include_optional:
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1(
                 type = 'image_url',
-                image_url = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
+                image_url = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
                     url = '', 
                     detail = 'auto', 
                     mime_type = '', )
@@ -44,7 +44,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBloc
         else:
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf1(
                 type = 'image_url',
-                image_url = test.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
+                image_url = PollinationAI_SDK.models.post_generate_v1_chat_completions_200_response_choices_inner_message_content_blocks_inner_any_of_1_image_url.postGenerateV1ChatCompletions_200_response_choices_inner_message_content_blocks_inner_anyOf_1_image_url(
                     url = '', 
                     detail = 'auto', 
                     mime_type = '', ),

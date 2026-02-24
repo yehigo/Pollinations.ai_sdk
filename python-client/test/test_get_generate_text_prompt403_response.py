@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt403_response import GetGenerateTextPrompt403Response
+from PollinationAI_SDK.models.get_generate_text_prompt403_response import GetGenerateTextPrompt403Response
 
 class TestGetGenerateTextPrompt403Response(unittest.TestCase):
     """GetGenerateTextPrompt403Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestGetGenerateTextPrompt403Response(unittest.TestCase):
             return GetGenerateTextPrompt403Response(
                 status = 403,
                 success = false,
-                error = test.models.get_generate_text_prompt_403_response_error.getGenerateText_prompt_403_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_403_response_error.getGenerateText_prompt_403_response_error(
                     code = 'FORBIDDEN', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
@@ -51,11 +51,11 @@ class TestGetGenerateTextPrompt403Response(unittest.TestCase):
             return GetGenerateTextPrompt403Response(
                 status = 403,
                 success = false,
-                error = test.models.get_generate_text_prompt_403_response_error.getGenerateText_prompt_403_response_error(
+                error = PollinationAI_SDK.models.get_generate_text_prompt_403_response_error.getGenerateText_prompt_403_response_error(
                     code = 'FORBIDDEN', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions_request_audio import PostGenerateV1ChatCompletionsRequestAudio
+from PollinationAI_SDK.models.post_generate_v1_chat_completions_request_audio import PostGenerateV1ChatCompletionsRequestAudio
 
 class TestPostGenerateV1ChatCompletionsRequestAudio(unittest.TestCase):
     """PostGenerateV1ChatCompletionsRequestAudio unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_text_prompt403_response_error import GetGenerateTextPrompt403ResponseError
+from PollinationAI_SDK.models.get_generate_text_prompt403_response_error import GetGenerateTextPrompt403ResponseError
 
 class TestGetGenerateTextPrompt403ResponseError(unittest.TestCase):
     """GetGenerateTextPrompt403ResponseError unit test stubs"""
@@ -38,7 +38,7 @@ class TestGetGenerateTextPrompt403ResponseError(unittest.TestCase):
                 code = 'FORBIDDEN',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
                 request_id = '',
@@ -49,7 +49,7 @@ class TestGetGenerateTextPrompt403ResponseError(unittest.TestCase):
                 code = 'FORBIDDEN',
                 message = None,
                 timestamp = '',
-                details = test.models.error_details.ErrorDetails(
+                details = PollinationAI_SDK.models.error_details.ErrorDetails(
                     name = '', 
                     stack = '', ),
         )

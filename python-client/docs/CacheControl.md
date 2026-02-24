@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from pollination_sdk.models.cache_control import CacheControl
+from PollinationAI_SDK.models.cache_control import CacheControl
 
 # TODO update the JSON string below
 json = "{}"

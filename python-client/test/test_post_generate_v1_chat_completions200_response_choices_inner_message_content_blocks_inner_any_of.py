@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions200_response_choices_inner_message_content_blocks_inner_any_of import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf
+from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response_choices_inner_message_content_blocks_inner_any_of import PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf
 
 class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf(unittest.TestCase):
     """PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf unit test stubs"""
@@ -37,7 +37,7 @@ class TestPostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBloc
             return PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf(
                 type = 'text',
                 text = '',
-                cache_control = test.models.cache_control.CacheControl(
+                cache_control = PollinationAI_SDK.models.cache_control.CacheControl(
                     type = 'ephemeral', )
             )
         else:

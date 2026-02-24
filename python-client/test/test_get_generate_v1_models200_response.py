@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.get_generate_v1_models200_response import GetGenerateV1Models200Response
+from PollinationAI_SDK.models.get_generate_v1_models200_response import GetGenerateV1Models200Response
 
 class TestGetGenerateV1Models200Response(unittest.TestCase):
     """GetGenerateV1Models200Response unit test stubs"""
@@ -37,7 +37,7 @@ class TestGetGenerateV1Models200Response(unittest.TestCase):
             return GetGenerateV1Models200Response(
                 object = 'list',
                 data = [
-                    test.models.get_generate_v1_models_200_response_data_inner.getGenerateV1Models_200_response_data_inner(
+                    PollinationAI_SDK.models.get_generate_v1_models_200_response_data_inner.getGenerateV1Models_200_response_data_inner(
                         id = '', 
                         object = 'model', 
                         created = 1.337, )
@@ -47,7 +47,7 @@ class TestGetGenerateV1Models200Response(unittest.TestCase):
             return GetGenerateV1Models200Response(
                 object = 'list',
                 data = [
-                    test.models.get_generate_v1_models_200_response_data_inner.getGenerateV1Models_200_response_data_inner(
+                    PollinationAI_SDK.models.get_generate_v1_models_200_response_data_inner.getGenerateV1Models_200_response_data_inner(
                         id = '', 
                         object = 'model', 
                         created = 1.337, )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from test.models.post_generate_v1_chat_completions401_response import PostGenerateV1ChatCompletions401Response
+from PollinationAI_SDK.models.post_generate_v1_chat_completions401_response import PostGenerateV1ChatCompletions401Response
 
 class TestPostGenerateV1ChatCompletions401Response(unittest.TestCase):
     """PostGenerateV1ChatCompletions401Response unit test stubs"""
@@ -37,11 +37,11 @@ class TestPostGenerateV1ChatCompletions401Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions401Response(
                 status = 401,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_401_response_error.postGenerateV1ChatCompletions_401_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_401_response_error.postGenerateV1ChatCompletions_401_response_error(
                     code = 'UNAUTHORIZED', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
@@ -51,11 +51,11 @@ class TestPostGenerateV1ChatCompletions401Response(unittest.TestCase):
             return PostGenerateV1ChatCompletions401Response(
                 status = 401,
                 success = false,
-                error = test.models.post_generate_v1_chat_completions_401_response_error.postGenerateV1ChatCompletions_401_response_error(
+                error = PollinationAI_SDK.models.post_generate_v1_chat_completions_401_response_error.postGenerateV1ChatCompletions_401_response_error(
                     code = 'UNAUTHORIZED', 
                     message = null, 
                     timestamp = '', 
-                    details = test.models.error_details.ErrorDetails(
+                    details = PollinationAI_SDK.models.error_details.ErrorDetails(
                         name = '', 
                         stack = '', ), 
                     request_id = '', 
