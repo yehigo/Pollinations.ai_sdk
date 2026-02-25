@@ -15,7 +15,6 @@ on:
 
 jobs:
   publish-python:
-    if: false
     runs-on: ubuntu-latest
     name: PollinationAI_SDK Python   
     environment:
@@ -63,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     name: PollinationAI_SDK Dart
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -77,6 +76,11 @@ jobs:
       - name: Perform Replacement
         run: |
           find dart-client/test -type f -name "*.dart" -exec sed -i 's/openapi/PollinationAI_SDK/g' {} +
+      - name: CP CHANGELOG AND LICENSE
+        run: |
+          mkdir -p dart-client/
+          cp CHANGELOG.md dart-client/
+          cp LICENSE dart-client/
 
   publish-dart:
     needs: generate-dart
