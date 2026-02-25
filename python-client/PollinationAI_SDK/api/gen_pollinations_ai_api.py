@@ -16,15 +16,16 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictBytes, StrictFloat, StrictInt, StrictStr, field_validator
-from typing import List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 from typing_extensions import Annotated
+from PollinationAI_SDK.models.create_speech_request import CreateSpeechRequest
 from PollinationAI_SDK.models.get_account_balance200_response import GetAccountBalance200Response
 from PollinationAI_SDK.models.get_account_key200_response import GetAccountKey200Response
 from PollinationAI_SDK.models.get_account_profile200_response import GetAccountProfile200Response
 from PollinationAI_SDK.models.get_account_usage200_response import GetAccountUsage200Response
 from PollinationAI_SDK.models.get_account_usage_daily200_response import GetAccountUsageDaily200Response
-from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
 from PollinationAI_SDK.models.get_generate_v1_models200_response import GetGenerateV1Models200Response
+from PollinationAI_SDK.models.post_generate_v1_audio_transcriptions200_response import PostGenerateV1AudioTranscriptions200Response
 from PollinationAI_SDK.models.post_generate_v1_chat_completions200_response import PostGenerateV1ChatCompletions200Response
 from PollinationAI_SDK.models.post_generate_v1_chat_completions_request import PostGenerateV1ChatCompletionsRequest
 
@@ -1372,8 +1373,15 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_models(
+    def get_generate_audio_by_text(
         self,
+        text: Annotated[str, Field(min_length=1, strict=True, description="Text to convert to speech, or a music description when model=elevenmusic")],
+        voice: Annotated[Optional[StrictStr], Field(description="Voice to use for speech generation (TTS only)")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="Audio output format (TTS only)")] = None,
+        model: Annotated[Optional[StrictStr], Field(description="Audio model: TTS (default) or elevenmusic for music generation")] = None,
+        duration: Annotated[Optional[StrictStr], Field(description="Music duration in seconds, 3-300 (elevenmusic only)")] = None,
+        instrumental: Annotated[Optional[StrictStr], Field(description="If true, guarantees instrumental output (elevenmusic only)")] = None,
+        key: Annotated[Optional[StrictStr], Field(description="API key (alternative to Authorization header)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1386,11 +1394,25 @@ class GenPollinationsAiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[GetGenerateImageModels200ResponseInner]:
-        """get_generate_image_models
+    ) -> bytearray:
+        """get_generate_audio_by_text
 
-        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Generate audio from text — speech (TTS) or music.  **Models:** Use `model` query param to select: - TTS (default): `elevenlabs`, `tts-1`, etc. - Music: `elevenmusic` (or `music`)  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm  **Music options:** `duration` in seconds (3-300), `instrumental=true`  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
+        :param text: Text to convert to speech, or a music description when model=elevenmusic (required)
+        :type text: str
+        :param voice: Voice to use for speech generation (TTS only)
+        :type voice: str
+        :param response_format: Audio output format (TTS only)
+        :type response_format: str
+        :param model: Audio model: TTS (default) or elevenmusic for music generation
+        :type model: str
+        :param duration: Music duration in seconds, 3-300 (elevenmusic only)
+        :type duration: str
+        :param instrumental: If true, guarantees instrumental output (elevenmusic only)
+        :type instrumental: str
+        :param key: API key (alternative to Authorization header)
+        :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1413,7 +1435,14 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_models_serialize(
+        _param = self._get_generate_audio_by_text_serialize(
+            text=text,
+            voice=voice,
+            response_format=response_format,
+            model=model,
+            duration=duration,
+            instrumental=instrumental,
+            key=key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1421,7 +1450,11 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1436,8 +1469,15 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_models_with_http_info(
+    def get_generate_audio_by_text_with_http_info(
         self,
+        text: Annotated[str, Field(min_length=1, strict=True, description="Text to convert to speech, or a music description when model=elevenmusic")],
+        voice: Annotated[Optional[StrictStr], Field(description="Voice to use for speech generation (TTS only)")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="Audio output format (TTS only)")] = None,
+        model: Annotated[Optional[StrictStr], Field(description="Audio model: TTS (default) or elevenmusic for music generation")] = None,
+        duration: Annotated[Optional[StrictStr], Field(description="Music duration in seconds, 3-300 (elevenmusic only)")] = None,
+        instrumental: Annotated[Optional[StrictStr], Field(description="If true, guarantees instrumental output (elevenmusic only)")] = None,
+        key: Annotated[Optional[StrictStr], Field(description="API key (alternative to Authorization header)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1450,11 +1490,25 @@ class GenPollinationsAiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[GetGenerateImageModels200ResponseInner]]:
-        """get_generate_image_models
+    ) -> ApiResponse[bytearray]:
+        """get_generate_audio_by_text
 
-        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Generate audio from text — speech (TTS) or music.  **Models:** Use `model` query param to select: - TTS (default): `elevenlabs`, `tts-1`, etc. - Music: `elevenmusic` (or `music`)  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm  **Music options:** `duration` in seconds (3-300), `instrumental=true`  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
+        :param text: Text to convert to speech, or a music description when model=elevenmusic (required)
+        :type text: str
+        :param voice: Voice to use for speech generation (TTS only)
+        :type voice: str
+        :param response_format: Audio output format (TTS only)
+        :type response_format: str
+        :param model: Audio model: TTS (default) or elevenmusic for music generation
+        :type model: str
+        :param duration: Music duration in seconds, 3-300 (elevenmusic only)
+        :type duration: str
+        :param instrumental: If true, guarantees instrumental output (elevenmusic only)
+        :type instrumental: str
+        :param key: API key (alternative to Authorization header)
+        :type key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1477,7 +1531,14 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_models_serialize(
+        _param = self._get_generate_audio_by_text_serialize(
+            text=text,
+            voice=voice,
+            response_format=response_format,
+            model=model,
+            duration=duration,
+            instrumental=instrumental,
+            key=key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1485,7 +1546,11 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1500,8 +1565,15 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_models_without_preload_content(
+    def get_generate_audio_by_text_without_preload_content(
         self,
+        text: Annotated[str, Field(min_length=1, strict=True, description="Text to convert to speech, or a music description when model=elevenmusic")],
+        voice: Annotated[Optional[StrictStr], Field(description="Voice to use for speech generation (TTS only)")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="Audio output format (TTS only)")] = None,
+        model: Annotated[Optional[StrictStr], Field(description="Audio model: TTS (default) or elevenmusic for music generation")] = None,
+        duration: Annotated[Optional[StrictStr], Field(description="Music duration in seconds, 3-300 (elevenmusic only)")] = None,
+        instrumental: Annotated[Optional[StrictStr], Field(description="If true, guarantees instrumental output (elevenmusic only)")] = None,
+        key: Annotated[Optional[StrictStr], Field(description="API key (alternative to Authorization header)")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1515,9 +1587,189 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_generate_image_models
+        """get_generate_audio_by_text
 
-        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Generate audio from text — speech (TTS) or music.  **Models:** Use `model` query param to select: - TTS (default): `elevenlabs`, `tts-1`, etc. - Music: `elevenmusic` (or `music`)  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm  **Music options:** `duration` in seconds (3-300), `instrumental=true`  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
+
+        :param text: Text to convert to speech, or a music description when model=elevenmusic (required)
+        :type text: str
+        :param voice: Voice to use for speech generation (TTS only)
+        :type voice: str
+        :param response_format: Audio output format (TTS only)
+        :type response_format: str
+        :param model: Audio model: TTS (default) or elevenmusic for music generation
+        :type model: str
+        :param duration: Music duration in seconds, 3-300 (elevenmusic only)
+        :type duration: str
+        :param instrumental: If true, guarantees instrumental output (elevenmusic only)
+        :type instrumental: str
+        :param key: API key (alternative to Authorization header)
+        :type key: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_audio_by_text_serialize(
+            text=text,
+            voice=voice,
+            response_format=response_format,
+            model=model,
+            duration=duration,
+            instrumental=instrumental,
+            key=key,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_generate_audio_by_text_serialize(
+        self,
+        text,
+        voice,
+        response_format,
+        model,
+        duration,
+        instrumental,
+        key,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if text is not None:
+            _path_params['text'] = text
+        # process the query parameters
+        if voice is not None:
+            
+            _query_params.append(('voice', voice))
+            
+        if response_format is not None:
+            
+            _query_params.append(('response_format', response_format))
+            
+        if model is not None:
+            
+            _query_params.append(('model', model))
+            
+        if duration is not None:
+            
+            _query_params.append(('duration', duration))
+            
+        if instrumental is not None:
+            
+            _query_params.append(('instrumental', instrumental))
+            
+        if key is not None:
+            
+            _query_params.append(('key', key))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'audio/mpeg', 
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/audio/{text}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_generate_audio_models(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[object]:
+        """get_generate_audio_models
+
+        Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1541,7 +1793,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_models_serialize(
+        _param = self._get_generate_audio_models_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1549,7 +1801,135 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "List[object]",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_generate_audio_models_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[object]]:
+        """get_generate_audio_models
+
+        Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_audio_models_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[object]",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_generate_audio_models_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_generate_audio_models
+
+        Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_audio_models_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[object]",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1559,7 +1939,7 @@ class GenPollinationsAiApi:
         return response_data.response
 
 
-    def _get_generate_image_models_serialize(
+    def _get_generate_audio_models_serialize(
         self,
         _request_auth,
         _content_type,
@@ -1604,7 +1984,7 @@ class GenPollinationsAiApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/image/models',
+            resource_path='/audio/models',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1621,7 +2001,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_prompt__s_s(
+    def get_generate_image_by_prompt(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text description of the image or video to generate")],
         model: Annotated[Optional[StrictStr], Field(description="AI model. Image: flux, zimage, turbo, gptimage, kontext, seedream, seedream-pro, nanobanana. Video: veo, seedance, seedance-pro")] = None,
@@ -1650,7 +2030,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> bytearray:
-        """get_generate_image_prompt__s_s
+        """get_generate_image_by_prompt
 
         Generate an image or video from a text prompt.  **Image Models:** `flux` (default), `turbo`, `gptimage`, `kontext`, `seedream`, `nanobanana`, `nanobanana-pro`  **Video Models:** `veo`, `seedance` - `veo`: Text-to-video only (4-8 seconds) - `seedance`: Text-to-video and image-to-video (2-10 seconds)  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -1704,7 +2084,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_prompt__s_s_serialize(
+        _param = self._get_generate_image_by_prompt_serialize(
             prompt=prompt,
             model=model,
             width=width,
@@ -1727,10 +2107,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1745,7 +2125,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_prompt__s_s_with_http_info(
+    def get_generate_image_by_prompt_with_http_info(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text description of the image or video to generate")],
         model: Annotated[Optional[StrictStr], Field(description="AI model. Image: flux, zimage, turbo, gptimage, kontext, seedream, seedream-pro, nanobanana. Video: veo, seedance, seedance-pro")] = None,
@@ -1774,7 +2154,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[bytearray]:
-        """get_generate_image_prompt__s_s
+        """get_generate_image_by_prompt
 
         Generate an image or video from a text prompt.  **Image Models:** `flux` (default), `turbo`, `gptimage`, `kontext`, `seedream`, `nanobanana`, `nanobanana-pro`  **Video Models:** `veo`, `seedance` - `veo`: Text-to-video only (4-8 seconds) - `seedance`: Text-to-video and image-to-video (2-10 seconds)  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -1828,7 +2208,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_prompt__s_s_serialize(
+        _param = self._get_generate_image_by_prompt_serialize(
             prompt=prompt,
             model=model,
             width=width,
@@ -1851,10 +2231,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1869,7 +2249,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_image_prompt__s_s_without_preload_content(
+    def get_generate_image_by_prompt_without_preload_content(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text description of the image or video to generate")],
         model: Annotated[Optional[StrictStr], Field(description="AI model. Image: flux, zimage, turbo, gptimage, kontext, seedream, seedream-pro, nanobanana. Video: veo, seedance, seedance-pro")] = None,
@@ -1898,7 +2278,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_generate_image_prompt__s_s
+        """get_generate_image_by_prompt
 
         Generate an image or video from a text prompt.  **Image Models:** `flux` (default), `turbo`, `gptimage`, `kontext`, `seedream`, `nanobanana`, `nanobanana-pro`  **Video Models:** `veo`, `seedance` - `veo`: Text-to-video only (4-8 seconds) - `seedance`: Text-to-video and image-to-video (2-10 seconds)  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -1952,7 +2332,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_image_prompt__s_s_serialize(
+        _param = self._get_generate_image_by_prompt_serialize(
             prompt=prompt,
             model=model,
             width=width,
@@ -1975,10 +2355,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "bytearray",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -1988,7 +2368,7 @@ class GenPollinationsAiApi:
         return response_data.response
 
 
-    def _get_generate_image_prompt__s_s_serialize(
+    def _get_generate_image_by_prompt_serialize(
         self,
         prompt,
         model,
@@ -2121,7 +2501,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_models(
+    def get_generate_image_models(
         self,
         _request_timeout: Union[
             None,
@@ -2135,10 +2515,10 @@ class GenPollinationsAiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[GetGenerateImageModels200ResponseInner]:
-        """get_generate_text_models
+    ) -> List[object]:
+        """get_generate_image_models
 
-        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2162,7 +2542,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_models_serialize(
+        _param = self._get_generate_image_models_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2170,7 +2550,7 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "List[object]",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2185,7 +2565,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_models_with_http_info(
+    def get_generate_image_models_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -2199,10 +2579,10 @@ class GenPollinationsAiApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[GetGenerateImageModels200ResponseInner]]:
-        """get_generate_text_models
+    ) -> ApiResponse[List[object]]:
+        """get_generate_image_models
 
-        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2226,7 +2606,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_models_serialize(
+        _param = self._get_generate_image_models_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2234,7 +2614,7 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "List[object]",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2249,7 +2629,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_models_without_preload_content(
+    def get_generate_image_models_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -2264,9 +2644,9 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_generate_text_models
+        """get_generate_image_models
 
-        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+        Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2290,7 +2670,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_models_serialize(
+        _param = self._get_generate_image_models_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2298,7 +2678,7 @@ class GenPollinationsAiApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetGenerateImageModels200ResponseInner]",
+            '200': "List[object]",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2308,7 +2688,7 @@ class GenPollinationsAiApi:
         return response_data.response
 
 
-    def _get_generate_text_models_serialize(
+    def _get_generate_image_models_serialize(
         self,
         _request_auth,
         _content_type,
@@ -2353,7 +2733,7 @@ class GenPollinationsAiApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/text/models',
+            resource_path='/image/models',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2370,7 +2750,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_prompt(
+    def get_generate_text_by_prompt(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text prompt for generation")],
         model: Annotated[Optional[StrictStr], Field(description="Text model to use for generation")] = None,
@@ -2392,7 +2772,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> str:
-        """get_generate_text_prompt
+        """get_generate_text_by_prompt
 
         Generates text from text prompts.  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -2432,7 +2812,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_prompt_serialize(
+        _param = self._get_generate_text_by_prompt_serialize(
             prompt=prompt,
             model=model,
             seed=seed,
@@ -2448,10 +2828,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2466,7 +2846,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_prompt_with_http_info(
+    def get_generate_text_by_prompt_with_http_info(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text prompt for generation")],
         model: Annotated[Optional[StrictStr], Field(description="Text model to use for generation")] = None,
@@ -2488,7 +2868,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[str]:
-        """get_generate_text_prompt
+        """get_generate_text_by_prompt
 
         Generates text from text prompts.  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -2528,7 +2908,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_prompt_serialize(
+        _param = self._get_generate_text_by_prompt_serialize(
             prompt=prompt,
             model=model,
             seed=seed,
@@ -2544,10 +2924,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2562,7 +2942,7 @@ class GenPollinationsAiApi:
 
 
     @validate_call
-    def get_generate_text_prompt_without_preload_content(
+    def get_generate_text_by_prompt_without_preload_content(
         self,
         prompt: Annotated[str, Field(min_length=1, strict=True, description="Text prompt for generation")],
         model: Annotated[Optional[StrictStr], Field(description="Text model to use for generation")] = None,
@@ -2584,7 +2964,7 @@ class GenPollinationsAiApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """get_generate_text_prompt
+        """get_generate_text_by_prompt
 
         Generates text from text prompts.  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
 
@@ -2624,7 +3004,7 @@ class GenPollinationsAiApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._get_generate_text_prompt_serialize(
+        _param = self._get_generate_text_by_prompt_serialize(
             prompt=prompt,
             model=model,
             seed=seed,
@@ -2640,10 +3020,10 @@ class GenPollinationsAiApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "str",
-            '400': "GetGenerateTextPrompt400Response",
-            '401': "GetGenerateTextPrompt401Response",
-            '402': "GetGenerateTextPrompt402Response",
-            '403': "GetGenerateTextPrompt403Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '402': "GetGenerateTextByPrompt402Response",
+            '403': "GetGenerateTextByPrompt403Response",
             '500': "GetGenerateImageModels500Response",
         }
         response_data = self.api_client.call_api(
@@ -2653,7 +3033,7 @@ class GenPollinationsAiApi:
         return response_data.response
 
 
-    def _get_generate_text_prompt_serialize(
+    def _get_generate_text_by_prompt_serialize(
         self,
         prompt,
         model,
@@ -2733,6 +3113,255 @@ class GenPollinationsAiApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/text/{prompt}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_generate_text_models(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> List[object]:
+        """get_generate_text_models
+
+        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_text_models_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[object]",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_generate_text_models_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[object]]:
+        """get_generate_text_models
+
+        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_text_models_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[object]",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_generate_text_models_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """get_generate_text_models
+
+        Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_generate_text_models_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[object]",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_generate_text_models_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/text/models',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2982,6 +3611,652 @@ class GenPollinationsAiApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/v1/models',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def post_generate_v1_audio_speech(
+        self,
+        create_speech_request: Optional[CreateSpeechRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> bytearray:
+        """post_generate_v1_audio_speech
+
+        Generate audio from text — speech (TTS) or music.  This endpoint is OpenAI TTS API compatible. Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+
+        :param create_speech_request:
+        :type create_speech_request: CreateSpeechRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_speech_serialize(
+            create_speech_request=create_speech_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_generate_v1_audio_speech_with_http_info(
+        self,
+        create_speech_request: Optional[CreateSpeechRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[bytearray]:
+        """post_generate_v1_audio_speech
+
+        Generate audio from text — speech (TTS) or music.  This endpoint is OpenAI TTS API compatible. Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+
+        :param create_speech_request:
+        :type create_speech_request: CreateSpeechRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_speech_serialize(
+            create_speech_request=create_speech_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_generate_v1_audio_speech_without_preload_content(
+        self,
+        create_speech_request: Optional[CreateSpeechRequest] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """post_generate_v1_audio_speech
+
+        Generate audio from text — speech (TTS) or music.  This endpoint is OpenAI TTS API compatible. Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+
+        :param create_speech_request:
+        :type create_speech_request: CreateSpeechRequest
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_speech_serialize(
+            create_speech_request=create_speech_request,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "bytearray",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_generate_v1_audio_speech_serialize(
+        self,
+        create_speech_request,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if create_speech_request is not None:
+            _body_params = create_speech_request
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'audio/mpeg', 
+                    'audio/opus', 
+                    'audio/aac', 
+                    'audio/flac', 
+                    'audio/wav', 
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/audio/speech',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def post_generate_v1_audio_transcriptions(
+        self,
+        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.")],
+        model: Annotated[Optional[StrictStr], Field(description="The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.")] = None,
+        language: Annotated[Optional[StrictStr], Field(description="Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.")] = None,
+        prompt: Annotated[Optional[StrictStr], Field(description="Optional text to guide the model's style or continue a previous segment.")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="The format of the transcript output.")] = None,
+        temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Sampling temperature between 0 and 1. Lower is more deterministic.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PostGenerateV1AudioTranscriptions200Response:
+        """post_generate_v1_audio_transcriptions
+
+        Transcribe audio to text using Whisper or ElevenLabs Scribe.  This endpoint is OpenAI Whisper API compatible.  **Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm  **Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+
+        :param file: The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm. (required)
+        :type file: bytearray
+        :param model: The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.
+        :type model: str
+        :param language: Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.
+        :type language: str
+        :param prompt: Optional text to guide the model's style or continue a previous segment.
+        :type prompt: str
+        :param response_format: The format of the transcript output.
+        :type response_format: str
+        :param temperature: Sampling temperature between 0 and 1. Lower is more deterministic.
+        :type temperature: float
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_transcriptions_serialize(
+            file=file,
+            model=model,
+            language=language,
+            prompt=prompt,
+            response_format=response_format,
+            temperature=temperature,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PostGenerateV1AudioTranscriptions200Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def post_generate_v1_audio_transcriptions_with_http_info(
+        self,
+        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.")],
+        model: Annotated[Optional[StrictStr], Field(description="The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.")] = None,
+        language: Annotated[Optional[StrictStr], Field(description="Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.")] = None,
+        prompt: Annotated[Optional[StrictStr], Field(description="Optional text to guide the model's style or continue a previous segment.")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="The format of the transcript output.")] = None,
+        temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Sampling temperature between 0 and 1. Lower is more deterministic.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PostGenerateV1AudioTranscriptions200Response]:
+        """post_generate_v1_audio_transcriptions
+
+        Transcribe audio to text using Whisper or ElevenLabs Scribe.  This endpoint is OpenAI Whisper API compatible.  **Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm  **Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+
+        :param file: The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm. (required)
+        :type file: bytearray
+        :param model: The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.
+        :type model: str
+        :param language: Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.
+        :type language: str
+        :param prompt: Optional text to guide the model's style or continue a previous segment.
+        :type prompt: str
+        :param response_format: The format of the transcript output.
+        :type response_format: str
+        :param temperature: Sampling temperature between 0 and 1. Lower is more deterministic.
+        :type temperature: float
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_transcriptions_serialize(
+            file=file,
+            model=model,
+            language=language,
+            prompt=prompt,
+            response_format=response_format,
+            temperature=temperature,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PostGenerateV1AudioTranscriptions200Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def post_generate_v1_audio_transcriptions_without_preload_content(
+        self,
+        file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.")],
+        model: Annotated[Optional[StrictStr], Field(description="The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.")] = None,
+        language: Annotated[Optional[StrictStr], Field(description="Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.")] = None,
+        prompt: Annotated[Optional[StrictStr], Field(description="Optional text to guide the model's style or continue a previous segment.")] = None,
+        response_format: Annotated[Optional[StrictStr], Field(description="The format of the transcript output.")] = None,
+        temperature: Annotated[Optional[Union[StrictFloat, StrictInt]], Field(description="Sampling temperature between 0 and 1. Lower is more deterministic.")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """post_generate_v1_audio_transcriptions
+
+        Transcribe audio to text using Whisper or ElevenLabs Scribe.  This endpoint is OpenAI Whisper API compatible.  **Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm  **Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+
+        :param file: The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm. (required)
+        :type file: bytearray
+        :param model: The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.
+        :type model: str
+        :param language: Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.
+        :type language: str
+        :param prompt: Optional text to guide the model's style or continue a previous segment.
+        :type prompt: str
+        :param response_format: The format of the transcript output.
+        :type response_format: str
+        :param temperature: Sampling temperature between 0 and 1. Lower is more deterministic.
+        :type temperature: float
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._post_generate_v1_audio_transcriptions_serialize(
+            file=file,
+            model=model,
+            language=language,
+            prompt=prompt,
+            response_format=response_format,
+            temperature=temperature,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PostGenerateV1AudioTranscriptions200Response",
+            '400': "GetGenerateTextByPrompt400Response",
+            '401': "GetGenerateTextByPrompt401Response",
+            '500': "GetGenerateImageModels500Response",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _post_generate_v1_audio_transcriptions_serialize(
+        self,
+        file,
+        model,
+        language,
+        prompt,
+        response_format,
+        temperature,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if file is not None:
+            _files['file'] = file
+        if model is not None:
+            _form_params.append(('model', model))
+        if language is not None:
+            _form_params.append(('language', language))
+        if prompt is not None:
+            _form_params.append(('prompt', prompt))
+        if response_format is not None:
+            _form_params.append(('response_format', response_format))
+        if temperature is not None:
+            _form_params.append(('temperature', temperature))
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'multipart/form-data'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'bearerAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/v1/audio/transcriptions',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

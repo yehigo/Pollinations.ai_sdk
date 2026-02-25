@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.GetGenerateV1Models200Response
+# pollination_ai_sdk.model.GetGenerateV1Models200Response
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

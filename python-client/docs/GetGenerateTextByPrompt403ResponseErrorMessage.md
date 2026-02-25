@@ -1,0 +1,28 @@
+# GetGenerateTextByPrompt403ResponseErrorMessage
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+
+## Example
+
+```python
+from PollinationAI_SDK.models.get_generate_text_by_prompt403_response_error_message import GetGenerateTextByPrompt403ResponseErrorMessage
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of GetGenerateTextByPrompt403ResponseErrorMessage from a JSON string
+get_generate_text_by_prompt403_response_error_message_instance = GetGenerateTextByPrompt403ResponseErrorMessage.from_json(json)
+# print the JSON string representation of the object
+print(GetGenerateTextByPrompt403ResponseErrorMessage.to_json())
+
+# convert the object into a dict
+get_generate_text_by_prompt403_response_error_message_dict = get_generate_text_by_prompt403_response_error_message_instance.to_dict()
+# create an instance of GetGenerateTextByPrompt403ResponseErrorMessage from a dict
+get_generate_text_by_prompt403_response_error_message_from_dict = GetGenerateTextByPrompt403ResponseErrorMessage.from_dict(get_generate_text_by_prompt403_response_error_message_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

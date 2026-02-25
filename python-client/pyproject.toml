@@ -1,6 +1,6 @@
 [project]
 name = "PollinationAI_SDK"
-version = "1.0.1"
+version = "1.0.2"
 description = "pollinations.ai API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},

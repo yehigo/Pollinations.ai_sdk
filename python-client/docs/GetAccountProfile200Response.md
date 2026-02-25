@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **email** | **str** |  | 
 **github_username** | **str** |  | 
+**image** | **str** |  | 
 **tier** | **str** | User&#39;s current tier level | 
 **created_at** | **datetime** | Account creation timestamp (ISO 8601) | 
 **next_reset_at** | **datetime** |  | 

@@ -66,16 +66,6 @@ class PostGenerateV1ChatCompletionsRequest(BaseModel):
     functions: Optional[Annotated[List[PostGenerateV1ChatCompletionsRequestFunctionsInner], Field(min_length=1, max_length=128)]] = None
     __properties: ClassVar[List[str]] = ["messages", "model", "modalities", "audio", "frequency_penalty", "repetition_penalty", "logit_bias", "logprobs", "top_logprobs", "max_tokens", "presence_penalty", "response_format", "seed", "stop", "stream", "stream_options", "thinking", "reasoning_effort", "thinking_budget", "temperature", "top_p", "tools", "tool_choice", "parallel_tool_calls", "user", "function_call", "functions"]
 
-    @field_validator('model')
-    def model_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['openai', 'openai-fast', 'openai-large', 'qwen-coder', 'mistral', 'openai-audio', 'gemini', 'gemini-fast', 'deepseek', 'grok', 'gemini-search', 'chickytutor', 'midijourney', 'claude-fast', 'claude', 'claude-large', 'perplexity-fast', 'perplexity-reasoning', 'kimi', 'gemini-large', 'gemini-legacy', 'nova-fast', 'glm', 'minimax', 'nomnom']):
-            raise ValueError("must be one of enum values ('openai', 'openai-fast', 'openai-large', 'qwen-coder', 'mistral', 'openai-audio', 'gemini', 'gemini-fast', 'deepseek', 'grok', 'gemini-search', 'chickytutor', 'midijourney', 'claude-fast', 'claude', 'claude-large', 'perplexity-fast', 'perplexity-reasoning', 'kimi', 'gemini-large', 'gemini-legacy', 'nova-fast', 'glm', 'minimax', 'nomnom')")
-        return value
-
     @field_validator('modalities')
     def modalities_validate_enum(cls, value):
         """Validates the enum"""

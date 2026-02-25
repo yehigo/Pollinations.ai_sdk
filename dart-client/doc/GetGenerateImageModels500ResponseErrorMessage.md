@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.GetGenerateImageModels500ResponseErrorMessage
+# pollination_ai_sdk.model.GetGenerateImageModels500ResponseErrorMessage
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

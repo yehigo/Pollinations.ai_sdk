@@ -10,11 +10,15 @@ Method | HTTP request | Description
 [**get_account_profile**](GenPollinationsAiApi.md#get_account_profile) | **GET** /account/profile | 
 [**get_account_usage**](GenPollinationsAiApi.md#get_account_usage) | **GET** /account/usage | 
 [**get_account_usage_daily**](GenPollinationsAiApi.md#get_account_usage_daily) | **GET** /account/usage/daily | 
+[**get_generate_audio_by_text**](GenPollinationsAiApi.md#get_generate_audio_by_text) | **GET** /audio/{text} | 
+[**get_generate_audio_models**](GenPollinationsAiApi.md#get_generate_audio_models) | **GET** /audio/models | 
+[**get_generate_image_by_prompt**](GenPollinationsAiApi.md#get_generate_image_by_prompt) | **GET** /image/{prompt} | 
 [**get_generate_image_models**](GenPollinationsAiApi.md#get_generate_image_models) | **GET** /image/models | 
-[**get_generate_image_prompt__s_s**](GenPollinationsAiApi.md#get_generate_image_prompt__s_s) | **GET** /image/{prompt} | 
+[**get_generate_text_by_prompt**](GenPollinationsAiApi.md#get_generate_text_by_prompt) | **GET** /text/{prompt} | 
 [**get_generate_text_models**](GenPollinationsAiApi.md#get_generate_text_models) | **GET** /text/models | 
-[**get_generate_text_prompt**](GenPollinationsAiApi.md#get_generate_text_prompt) | **GET** /text/{prompt} | 
 [**get_generate_v1_models**](GenPollinationsAiApi.md#get_generate_v1_models) | **GET** /v1/models | 
+[**post_generate_v1_audio_speech**](GenPollinationsAiApi.md#post_generate_v1_audio_speech) | **POST** /v1/audio/speech | 
+[**post_generate_v1_audio_transcriptions**](GenPollinationsAiApi.md#post_generate_v1_audio_transcriptions) | **POST** /v1/audio/transcriptions | 
 [**post_generate_v1_chat_completions**](GenPollinationsAiApi.md#post_generate_v1_chat_completions) | **POST** /v1/chat/completions | 
 
 
@@ -394,10 +398,28 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_generate_image_models**
-> List[GetGenerateImageModels200ResponseInner] get_generate_image_models()
+# **get_generate_audio_by_text**
+> bytearray get_generate_audio_by_text(text, voice=voice, response_format=response_format, model=model, duration=duration, instrumental=instrumental, key=key)
 
-Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+Generate audio from text — speech (TTS) or music.
+
+**Models:** Use `model` query param to select:
+- TTS (default): `elevenlabs`, `tts-1`, etc.
+- Music: `elevenmusic` (or `music`)
+
+**TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill
+
+**Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+
+**Music options:** `duration` in seconds (3-300), `instrumental=true`
+
+**Authentication:**
+
+Include your API key either:
+- In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY`
+- As a query parameter: `?key=YOUR_API_KEY`
+
+API keys can be created from your dashboard at enter.pollinations.ai.
 
 ### Example
 
@@ -405,7 +427,97 @@ Get a list of available image generation models with pricing, capabilities, and 
 
 ```python
 import PollinationAI_SDK
-from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
+from PollinationAI_SDK.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://gen.pollinations.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = PollinationAI_SDK.Configuration(
+    host = "https://gen.pollinations.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): bearerAuth
+configuration = PollinationAI_SDK.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
+    text = 'Hello, welcome to Pollinations!' # str | Text to convert to speech, or a music description when model=elevenmusic
+    voice = alloy # str | Voice to use for speech generation (TTS only) (optional) (default to alloy)
+    response_format = mp3 # str | Audio output format (TTS only) (optional) (default to mp3)
+    model = 'tts-1' # str | Audio model: TTS (default) or elevenmusic for music generation (optional)
+    duration = '30' # str | Music duration in seconds, 3-300 (elevenmusic only) (optional)
+    instrumental = false # str | If true, guarantees instrumental output (elevenmusic only) (optional) (default to false)
+    key = 'key_example' # str | API key (alternative to Authorization header) (optional)
+
+    try:
+        api_response = api_instance.get_generate_audio_by_text(text, voice=voice, response_format=response_format, model=model, duration=duration, instrumental=instrumental, key=key)
+        print("The response of GenPollinationsAiApi->get_generate_audio_by_text:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GenPollinationsAiApi->get_generate_audio_by_text: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **text** | **str**| Text to convert to speech, or a music description when model&#x3D;elevenmusic | 
+ **voice** | **str**| Voice to use for speech generation (TTS only) | [optional] [default to alloy]
+ **response_format** | **str**| Audio output format (TTS only) | [optional] [default to mp3]
+ **model** | **str**| Audio model: TTS (default) or elevenmusic for music generation | [optional] 
+ **duration** | **str**| Music duration in seconds, 3-300 (elevenmusic only) | [optional] 
+ **instrumental** | **str**| If true, guarantees instrumental output (elevenmusic only) | [optional] [default to false]
+ **key** | **str**| API key (alternative to Authorization header) | [optional] 
+
+### Return type
+
+**bytearray**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: audio/mpeg, application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success - Returns audio data |  -  |
+**400** | Something was wrong with the input data, check the details for more info. |  -  |
+**401** | Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key&#x3D; query parameter. |  -  |
+**402** | Insufficient pollen balance or API key budget exhausted. |  -  |
+**403** | Access denied! You don&#39;t have the required permissions for this resource or model. |  -  |
+**500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_generate_audio_models**
+> List[object] get_generate_audio_models()
+
+Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+### Example
+
+* Bearer (API Key) Authentication (bearerAuth):
+
+```python
+import PollinationAI_SDK
 from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
@@ -431,11 +543,11 @@ with PollinationAI_SDK.ApiClient(configuration) as api_client:
     api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
-        api_response = api_instance.get_generate_image_models()
-        print("The response of GenPollinationsAiApi->get_generate_image_models:\n")
+        api_response = api_instance.get_generate_audio_models()
+        print("The response of GenPollinationsAiApi->get_generate_audio_models:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling GenPollinationsAiApi->get_generate_image_models: %s\n" % e)
+        print("Exception when calling GenPollinationsAiApi->get_generate_audio_models: %s\n" % e)
 ```
 
 
@@ -446,7 +558,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[GetGenerateImageModels200ResponseInner]**](GetGenerateImageModels200ResponseInner.md)
+**List[object]**
 
 ### Authorization
 
@@ -466,8 +578,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_generate_image_prompt__s_s**
-> bytearray get_generate_image_prompt__s_s(prompt, model=model, width=width, height=height, seed=seed, enhance=enhance, negative_prompt=negative_prompt, safe=safe, quality=quality, image=image, transparent=transparent, duration=duration, aspect_ratio=aspect_ratio, audio=audio)
+# **get_generate_image_by_prompt**
+> bytearray get_generate_image_by_prompt(prompt, model=model, width=width, height=height, seed=seed, enhance=enhance, negative_prompt=negative_prompt, safe=safe, quality=quality, image=image, transparent=transparent, duration=duration, aspect_ratio=aspect_ratio, audio=audio)
 
 Generate an image or video from a text prompt.
 
@@ -530,11 +642,11 @@ with PollinationAI_SDK.ApiClient(configuration) as api_client:
     audio = False # bool | Enable audio generation for video (veo only) (optional) (default to False)
 
     try:
-        api_response = api_instance.get_generate_image_prompt__s_s(prompt, model=model, width=width, height=height, seed=seed, enhance=enhance, negative_prompt=negative_prompt, safe=safe, quality=quality, image=image, transparent=transparent, duration=duration, aspect_ratio=aspect_ratio, audio=audio)
-        print("The response of GenPollinationsAiApi->get_generate_image_prompt__s_s:\n")
+        api_response = api_instance.get_generate_image_by_prompt(prompt, model=model, width=width, height=height, seed=seed, enhance=enhance, negative_prompt=negative_prompt, safe=safe, quality=quality, image=image, transparent=transparent, duration=duration, aspect_ratio=aspect_ratio, audio=audio)
+        print("The response of GenPollinationsAiApi->get_generate_image_by_prompt:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling GenPollinationsAiApi->get_generate_image_prompt__s_s: %s\n" % e)
+        print("Exception when calling GenPollinationsAiApi->get_generate_image_by_prompt: %s\n" % e)
 ```
 
 
@@ -585,10 +697,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_generate_text_models**
-> List[GetGenerateImageModels200ResponseInner] get_generate_text_models()
+# **get_generate_image_models**
+> List[object] get_generate_image_models()
 
-Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
 
 ### Example
 
@@ -596,7 +708,6 @@ Get a list of available text generation models with pricing, capabilities, and m
 
 ```python
 import PollinationAI_SDK
-from PollinationAI_SDK.models.get_generate_image_models200_response_inner import GetGenerateImageModels200ResponseInner
 from PollinationAI_SDK.rest import ApiException
 from pprint import pprint
 
@@ -622,11 +733,11 @@ with PollinationAI_SDK.ApiClient(configuration) as api_client:
     api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
 
     try:
-        api_response = api_instance.get_generate_text_models()
-        print("The response of GenPollinationsAiApi->get_generate_text_models:\n")
+        api_response = api_instance.get_generate_image_models()
+        print("The response of GenPollinationsAiApi->get_generate_image_models:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling GenPollinationsAiApi->get_generate_text_models: %s\n" % e)
+        print("Exception when calling GenPollinationsAiApi->get_generate_image_models: %s\n" % e)
 ```
 
 
@@ -637,7 +748,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[GetGenerateImageModels200ResponseInner]**](GetGenerateImageModels200ResponseInner.md)
+**List[object]**
 
 ### Authorization
 
@@ -657,8 +768,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_generate_text_prompt**
-> str get_generate_text_prompt(prompt, model=model, seed=seed, system=system, var_json=var_json, temperature=temperature, stream=stream)
+# **get_generate_text_by_prompt**
+> str get_generate_text_by_prompt(prompt, model=model, seed=seed, system=system, var_json=var_json, temperature=temperature, stream=stream)
 
 Generates text from text prompts.
 
@@ -708,11 +819,11 @@ with PollinationAI_SDK.ApiClient(configuration) as api_client:
     stream = False # bool | Stream response in real-time chunks (optional) (default to False)
 
     try:
-        api_response = api_instance.get_generate_text_prompt(prompt, model=model, seed=seed, system=system, var_json=var_json, temperature=temperature, stream=stream)
-        print("The response of GenPollinationsAiApi->get_generate_text_prompt:\n")
+        api_response = api_instance.get_generate_text_by_prompt(prompt, model=model, seed=seed, system=system, var_json=var_json, temperature=temperature, stream=stream)
+        print("The response of GenPollinationsAiApi->get_generate_text_by_prompt:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling GenPollinationsAiApi->get_generate_text_prompt: %s\n" % e)
+        print("Exception when calling GenPollinationsAiApi->get_generate_text_by_prompt: %s\n" % e)
 ```
 
 
@@ -752,6 +863,77 @@ Name | Type | Description  | Notes
 **401** | Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key&#x3D; query parameter. |  -  |
 **402** | Insufficient pollen balance or API key budget exhausted. |  -  |
 **403** | Access denied! You don&#39;t have the required permissions for this resource or model. |  -  |
+**500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_generate_text_models**
+> List[object] get_generate_text_models()
+
+Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+
+### Example
+
+* Bearer (API Key) Authentication (bearerAuth):
+
+```python
+import PollinationAI_SDK
+from PollinationAI_SDK.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://gen.pollinations.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = PollinationAI_SDK.Configuration(
+    host = "https://gen.pollinations.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): bearerAuth
+configuration = PollinationAI_SDK.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
+
+    try:
+        api_response = api_instance.get_generate_text_models()
+        print("The response of GenPollinationsAiApi->get_generate_text_models:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GenPollinationsAiApi->get_generate_text_models: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**List[object]**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
 **500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -824,6 +1006,185 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
+**500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_generate_v1_audio_speech**
+> bytearray post_generate_v1_audio_speech(create_speech_request=create_speech_request)
+
+Generate audio from text — speech (TTS) or music.
+
+This endpoint is OpenAI TTS API compatible.
+Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.
+
+**TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill
+
+**Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+
+### Example
+
+* Bearer (API Key) Authentication (bearerAuth):
+
+```python
+import PollinationAI_SDK
+from PollinationAI_SDK.models.create_speech_request import CreateSpeechRequest
+from PollinationAI_SDK.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://gen.pollinations.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = PollinationAI_SDK.Configuration(
+    host = "https://gen.pollinations.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): bearerAuth
+configuration = PollinationAI_SDK.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
+    create_speech_request = PollinationAI_SDK.CreateSpeechRequest() # CreateSpeechRequest |  (optional)
+
+    try:
+        api_response = api_instance.post_generate_v1_audio_speech(create_speech_request=create_speech_request)
+        print("The response of GenPollinationsAiApi->post_generate_v1_audio_speech:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GenPollinationsAiApi->post_generate_v1_audio_speech: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_speech_request** | [**CreateSpeechRequest**](CreateSpeechRequest.md)|  | [optional] 
+
+### Return type
+
+**bytearray**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: audio/mpeg, audio/opus, audio/aac, audio/flac, audio/wav, application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success - Returns audio data |  -  |
+**400** | Something was wrong with the input data, check the details for more info. |  -  |
+**401** | Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key&#x3D; query parameter. |  -  |
+**500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_generate_v1_audio_transcriptions**
+> PostGenerateV1AudioTranscriptions200Response post_generate_v1_audio_transcriptions(file, model=model, language=language, prompt=prompt, response_format=response_format, temperature=temperature)
+
+Transcribe audio to text using Whisper or ElevenLabs Scribe.
+
+This endpoint is OpenAI Whisper API compatible.
+
+**Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm
+
+**Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+
+### Example
+
+* Bearer (API Key) Authentication (bearerAuth):
+
+```python
+import PollinationAI_SDK
+from PollinationAI_SDK.models.post_generate_v1_audio_transcriptions200_response import PostGenerateV1AudioTranscriptions200Response
+from PollinationAI_SDK.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://gen.pollinations.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = PollinationAI_SDK.Configuration(
+    host = "https://gen.pollinations.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (API Key): bearerAuth
+configuration = PollinationAI_SDK.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with PollinationAI_SDK.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = PollinationAI_SDK.GenPollinationsAiApi(api_client)
+    file = None # bytearray | The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.
+    model = 'whisper-large-v3' # str | The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`. (optional) (default to 'whisper-large-v3')
+    language = 'language_example' # str | Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy. (optional)
+    prompt = 'prompt_example' # str | Optional text to guide the model's style or continue a previous segment. (optional)
+    response_format = json # str | The format of the transcript output. (optional) (default to json)
+    temperature = 3.4 # float | Sampling temperature between 0 and 1. Lower is more deterministic. (optional)
+
+    try:
+        api_response = api_instance.post_generate_v1_audio_transcriptions(file, model=model, language=language, prompt=prompt, response_format=response_format, temperature=temperature)
+        print("The response of GenPollinationsAiApi->post_generate_v1_audio_transcriptions:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling GenPollinationsAiApi->post_generate_v1_audio_transcriptions: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **bytearray**| The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm. | 
+ **model** | **str**| The model to use. Options: &#x60;whisper-large-v3&#x60;, &#x60;whisper-1&#x60;, &#x60;scribe&#x60;. | [optional] [default to &#39;whisper-large-v3&#39;]
+ **language** | **str**| Language of the audio in ISO-639-1 format (e.g. &#x60;en&#x60;, &#x60;fr&#x60;). Improves accuracy. | [optional] 
+ **prompt** | **str**| Optional text to guide the model&#39;s style or continue a previous segment. | [optional] 
+ **response_format** | **str**| The format of the transcript output. | [optional] [default to json]
+ **temperature** | **float**| Sampling temperature between 0 and 1. Lower is more deterministic. | [optional] 
+
+### Return type
+
+[**PostGenerateV1AudioTranscriptions200Response**](PostGenerateV1AudioTranscriptions200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success - Returns transcription |  -  |
+**400** | Something was wrong with the input data, check the details for more info. |  -  |
+**401** | Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key&#x3D; query parameter. |  -  |
 **500** | Oh snap, something went wrong on our end. We&#39;re on it! |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

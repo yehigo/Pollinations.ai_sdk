@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.GetAccountUsageDaily200ResponseUsageInner
+# pollination_ai_sdk.model.GetAccountUsageDaily200ResponseUsageInner
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

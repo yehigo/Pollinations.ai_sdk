@@ -450,6 +450,100 @@
             "additionalProperties": {}
           }
         ]
+      },
+      "CreateSpeechRequest": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "input": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "The text to generate audio for. Maximum 4096 characters.",
+            "example": "Hello, welcome to Pollinations!"
+          },
+          "voice": {
+            "default": "alloy",
+            "description": "The voice to use. Available voices: alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill.",
+            "example": "rachel",
+            "type": "string",
+            "enum": [
+              "alloy",
+              "echo",
+              "fable",
+              "onyx",
+              "shimmer",
+              "ash",
+              "ballad",
+              "coral",
+              "sage",
+              "verse",
+              "rachel",
+              "domi",
+              "bella",
+              "elli",
+              "charlotte",
+              "dorothy",
+              "sarah",
+              "emily",
+              "lily",
+              "matilda",
+              "adam",
+              "antoni",
+              "arnold",
+              "josh",
+              "sam",
+              "daniel",
+              "charlie",
+              "james",
+              "fin",
+              "callum",
+              "liam",
+              "george",
+              "brian",
+              "bill"
+            ]
+          },
+          "response_format": {
+            "default": "mp3",
+            "description": "The audio format for the output.",
+            "example": "mp3",
+            "type": "string",
+            "enum": [
+              "mp3",
+              "opus",
+              "aac",
+              "flac",
+              "wav",
+              "pcm"
+            ]
+          },
+          "speed": {
+            "default": 1,
+            "description": "The speed of the generated audio. 0.25 to 4.0, default 1.0.",
+            "example": 1,
+            "type": "number",
+            "minimum": 0.25,
+            "maximum": 4
+          },
+          "duration": {
+            "description": "Music duration in seconds, 3-300 (elevenmusic only)",
+            "example": 30,
+            "type": "number",
+            "minimum": 3,
+            "maximum": 300
+          },
+          "instrumental": {
+            "description": "If true, guarantees instrumental output (elevenmusic only)",
+            "example": false,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "input"
+        ]
       }
     }
   },
@@ -469,11 +563,6 @@
     }
   ],
   "paths": {
-    "/customer/balance": {},
-    "/nowpayments/invoice/{pack}": {},
-    "/tiers/view": {},
-    "/api-keys": {},
-    "/api-keys/{id}/update": {},
     "/account/profile": {
       "get": {
         "operationId": "getAccountProfile",
@@ -524,6 +613,17 @@
                       ],
                       "description": "GitHub username if linked"
                     },
+                    "image": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "description": "Profile picture URL (e.g. GitHub avatar)"
+                    },
                     "tier": {
                       "type": "string",
                       "enum": [
@@ -561,6 +661,7 @@
                     "name",
                     "email",
                     "githubUsername",
+                    "image",
                     "tier",
                     "createdAt",
                     "nextResetAt"
@@ -1174,94 +1275,7 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "aliases": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "pricing": {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "propertyNames": {
-                              "type": "string"
-                            },
-                            "additionalProperties": {
-                              "anyOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string",
-                                  "const": "pollen"
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "currency": {
-                                "type": "string",
-                                "const": "pollen"
-                              }
-                            },
-                            "required": [
-                              "currency"
-                            ]
-                          }
-                        ]
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "input_modalities": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "output_modalities": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "tools": {
-                        "type": "boolean"
-                      },
-                      "reasoning": {
-                        "type": "boolean"
-                      },
-                      "context_window": {
-                        "type": "number"
-                      },
-                      "voices": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "is_specialized": {
-                        "type": "boolean"
-                      },
-                      "paid_only": {
-                        "type": "boolean"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "aliases",
-                      "pricing"
-                    ]
-                  },
+                  "items": {},
                   "description": "List of models with pricing and metadata"
                 }
               }
@@ -1345,94 +1359,91 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "aliases": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "pricing": {
-                        "allOf": [
-                          {
-                            "type": "object",
-                            "propertyNames": {
-                              "type": "string"
-                            },
-                            "additionalProperties": {
-                              "anyOf": [
-                                {
-                                  "type": "number"
-                                },
-                                {
-                                  "type": "string",
-                                  "const": "pollen"
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "currency": {
-                                "type": "string",
-                                "const": "pollen"
-                              }
-                            },
-                            "required": [
-                              "currency"
-                            ]
-                          }
-                        ]
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "input_modalities": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "output_modalities": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "tools": {
-                        "type": "boolean"
-                      },
-                      "reasoning": {
-                        "type": "boolean"
-                      },
-                      "context_window": {
-                        "type": "number"
-                      },
-                      "voices": {
-                        "type": "array",
-                        "items": {
-                          "type": "string"
-                        }
-                      },
-                      "is_specialized": {
-                        "type": "boolean"
-                      },
-                      "paid_only": {
-                        "type": "boolean"
-                      }
+                  "items": {},
+                  "description": "List of models with pricing and metadata"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Oh snap, something went wrong on our end. We're on it!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 500
                     },
-                    "required": [
-                      "name",
-                      "aliases",
-                      "pricing"
-                    ]
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "INTERNAL_ERROR"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Oh snap, something went wrong on our end. We're on it!"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
                   },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/audio/models": {
+      "get": {
+        "operationId": "getGenerateAudioModels",
+        "tags": [
+          "gen.pollinations.ai"
+        ],
+        "description": "Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {},
                   "description": "List of models with pricing and metadata"
                 }
               }
@@ -2550,34 +2561,7 @@
                   "model": {
                     "default": "openai",
                     "description": "AI model for text generation. See /v1/models for full list.",
-                    "type": "string",
-                    "enum": [
-                      "openai",
-                      "openai-fast",
-                      "openai-large",
-                      "qwen-coder",
-                      "mistral",
-                      "openai-audio",
-                      "gemini",
-                      "gemini-fast",
-                      "deepseek",
-                      "grok",
-                      "gemini-search",
-                      "chickytutor",
-                      "midijourney",
-                      "claude-fast",
-                      "claude",
-                      "claude-large",
-                      "perplexity-fast",
-                      "perplexity-reasoning",
-                      "kimi",
-                      "gemini-large",
-                      "gemini-legacy",
-                      "nova-fast",
-                      "glm",
-                      "minimax",
-                      "nomnom"
-                    ]
+                    "type": "string"
                   },
                   "modalities": {
                     "type": "array",
@@ -3092,7 +3076,7 @@
     },
     "/text/{prompt}": {
       "get": {
-        "operationId": "getGenerateText:prompt",
+        "operationId": "getGenerateTextByPrompt",
         "tags": [
           "gen.pollinations.ai"
         ],
@@ -3449,6 +3433,7 @@
                 "claude-fast",
                 "claude",
                 "claude-large",
+                "claude-legacy",
                 "perplexity-fast",
                 "perplexity-reasoning",
                 "kimi",
@@ -3457,7 +3442,9 @@
                 "nova-fast",
                 "glm",
                 "minimax",
-                "nomnom"
+                "nomnom",
+                "polly",
+                "qwen-safety"
               ]
             },
             "description": "Text model to use for generation"
@@ -3512,7 +3499,7 @@
     },
     "/image/{prompt}": {
       "get": {
-        "operationId": "getGenerateImage:prompt{[\\s\\S]+}",
+        "operationId": "getGenerateImageByPrompt",
         "tags": [
           "gen.pollinations.ai"
         ],
@@ -3880,7 +3867,8 @@
                 "seedance-pro",
                 "wan",
                 "klein",
-                "klein-large"
+                "klein-large",
+                "ltx-2"
               ]
             },
             "description": "AI model. Image: flux, zimage, turbo, gptimage, kontext, seedream, seedream-pro, nanobanana. Video: veo, seedance, seedance-pro"
@@ -4005,6 +3993,946 @@
             "description": "Enable audio generation for video (veo only)"
           }
         ]
+      }
+    },
+    "/audio/{text}": {
+      "get": {
+        "operationId": "getGenerateAudioByText",
+        "tags": [
+          "gen.pollinations.ai"
+        ],
+        "description": "Generate audio from text — speech (TTS) or music.\n\n**Models:** Use `model` query param to select:\n- TTS (default): `elevenlabs`, `tts-1`, etc.\n- Music: `elevenmusic` (or `music`)\n\n**TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill\n\n**Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm\n\n**Music options:** `duration` in seconds (3-300), `instrumental=true`\n\n**Authentication:**\n\nInclude your API key either:\n- In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY`\n- As a query parameter: `?key=YOUR_API_KEY`\n\nAPI keys can be created from your dashboard at enter.pollinations.ai.",
+        "responses": {
+          "200": {
+            "description": "Success - Returns audio data",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something was wrong with the input data, check the details for more info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 400
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "BAD_REQUEST"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Something was wrong with the input data, check the details for more info."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ValidationErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 401
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "UNAUTHORIZED"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient pollen balance or API key budget exhausted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 402
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "PAYMENT_REQUIRED"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Insufficient pollen balance or API key budget exhausted."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied! You don't have the required permissions for this resource or model.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 403
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "FORBIDDEN"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Access denied! You don't have the required permissions for this resource or model."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Oh snap, something went wrong on our end. We're on it!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 500
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "INTERNAL_ERROR"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Oh snap, something went wrong on our end. We're on it!"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "text",
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "example": "Hello, welcome to Pollinations!"
+            },
+            "required": true,
+            "description": "Text to convert to speech, or a music description when model=elevenmusic"
+          },
+          {
+            "in": "query",
+            "name": "voice",
+            "schema": {
+              "default": "alloy",
+              "example": "nova",
+              "type": "string",
+              "enum": [
+                "alloy",
+                "echo",
+                "fable",
+                "onyx",
+                "shimmer",
+                "ash",
+                "ballad",
+                "coral",
+                "sage",
+                "verse",
+                "rachel",
+                "domi",
+                "bella",
+                "elli",
+                "charlotte",
+                "dorothy",
+                "sarah",
+                "emily",
+                "lily",
+                "matilda",
+                "adam",
+                "antoni",
+                "arnold",
+                "josh",
+                "sam",
+                "daniel",
+                "charlie",
+                "james",
+                "fin",
+                "callum",
+                "liam",
+                "george",
+                "brian",
+                "bill"
+              ]
+            },
+            "description": "Voice to use for speech generation (TTS only)"
+          },
+          {
+            "in": "query",
+            "name": "response_format",
+            "schema": {
+              "default": "mp3",
+              "example": "mp3",
+              "type": "string",
+              "enum": [
+                "mp3",
+                "opus",
+                "aac",
+                "flac",
+                "wav",
+                "pcm"
+              ]
+            },
+            "description": "Audio output format (TTS only)"
+          },
+          {
+            "in": "query",
+            "name": "model",
+            "schema": {
+              "example": "tts-1",
+              "type": "string"
+            },
+            "description": "Audio model: TTS (default) or elevenmusic for music generation"
+          },
+          {
+            "in": "query",
+            "name": "duration",
+            "schema": {
+              "example": "30",
+              "type": "string"
+            },
+            "description": "Music duration in seconds, 3-300 (elevenmusic only)"
+          },
+          {
+            "in": "query",
+            "name": "instrumental",
+            "schema": {
+              "example": "false",
+              "default": "false",
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "description": "If true, guarantees instrumental output (elevenmusic only)"
+          },
+          {
+            "in": "query",
+            "name": "key",
+            "schema": {
+              "type": "string"
+            },
+            "description": "API key (alternative to Authorization header)"
+          }
+        ]
+      }
+    },
+    "/v1/audio/speech": {
+      "post": {
+        "operationId": "postGenerateV1AudioSpeech",
+        "tags": [
+          "gen.pollinations.ai"
+        ],
+        "description": "Generate audio from text — speech (TTS) or music.\n\nThis endpoint is OpenAI TTS API compatible.\nSet `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.\n\n**TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill\n\n**Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm",
+        "responses": {
+          "200": {
+            "description": "Success - Returns audio data",
+            "content": {
+              "audio/mpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "audio/opus": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "audio/aac": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "audio/flac": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "audio/wav": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something was wrong with the input data, check the details for more info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 400
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "BAD_REQUEST"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Something was wrong with the input data, check the details for more info."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ValidationErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 401
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "UNAUTHORIZED"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Oh snap, something went wrong on our end. We're on it!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 500
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "INTERNAL_ERROR"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Oh snap, something went wrong on our end. We're on it!"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpeechRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/audio/transcriptions": {
+      "post": {
+        "operationId": "postGenerateV1AudioTranscriptions",
+        "tags": [
+          "gen.pollinations.ai"
+        ],
+        "description": "Transcribe audio to text using Whisper or ElevenLabs Scribe.\n\nThis endpoint is OpenAI Whisper API compatible.\n\n**Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm\n\n**Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm."
+                  },
+                  "model": {
+                    "type": "string",
+                    "default": "whisper-large-v3",
+                    "description": "The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`."
+                  },
+                  "language": {
+                    "type": "string",
+                    "description": "Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy."
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "description": "Optional text to guide the model's style or continue a previous segment."
+                  },
+                  "response_format": {
+                    "type": "string",
+                    "enum": [
+                      "json",
+                      "text",
+                      "srt",
+                      "verbose_json",
+                      "vtt"
+                    ],
+                    "default": "json",
+                    "description": "The format of the transcript output."
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "Sampling temperature between 0 and 1. Lower is more deterministic."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success - Returns transcription",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Something was wrong with the input data, check the details for more info.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 400
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "BAD_REQUEST"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Something was wrong with the input data, check the details for more info."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ValidationErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 401
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "UNAUTHORIZED"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Authentication required. Please provide an API key via Authorization header (Bearer token) or ?key= query parameter."
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Oh snap, something went wrong on our end. We're on it!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "number",
+                      "const": 500
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "const": false
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string",
+                          "const": "INTERNAL_ERROR"
+                        },
+                        "message": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "const": "Oh snap, something went wrong on our end. We're on it!"
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "timestamp": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "$ref": "#/components/schemas/ErrorDetails"
+                        },
+                        "requestId": {
+                          "type": "string"
+                        },
+                        "cause": {}
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "timestamp",
+                        "details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "success",
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

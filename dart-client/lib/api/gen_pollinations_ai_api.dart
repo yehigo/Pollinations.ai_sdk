@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 
 class GenPollinationsAiApi {
@@ -274,12 +274,122 @@ class GenPollinationsAiApi {
     return null;
   }
 
-  /// Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  /// Generate audio from text — speech (TTS) or music.  **Models:** Use `model` query param to select: - TTS (default): `elevenlabs`, `tts-1`, etc. - Music: `elevenmusic` (or `music`)  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm  **Music options:** `duration` in seconds (3-300), `instrumental=true`  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getGenerateImageModelsWithHttpInfo() async {
+  ///
+  /// Parameters:
+  ///
+  /// * [String] text (required):
+  ///   Text to convert to speech, or a music description when model=elevenmusic
+  ///
+  /// * [String] voice:
+  ///   Voice to use for speech generation (TTS only)
+  ///
+  /// * [String] responseFormat:
+  ///   Audio output format (TTS only)
+  ///
+  /// * [String] model:
+  ///   Audio model: TTS (default) or elevenmusic for music generation
+  ///
+  /// * [String] duration:
+  ///   Music duration in seconds, 3-300 (elevenmusic only)
+  ///
+  /// * [String] instrumental:
+  ///   If true, guarantees instrumental output (elevenmusic only)
+  ///
+  /// * [String] key:
+  ///   API key (alternative to Authorization header)
+  Future<Response> getGenerateAudioByTextWithHttpInfo(String text, { String? voice, String? responseFormat, String? model, String? duration, String? instrumental, String? key, }) async {
     // ignore: prefer_const_declarations
-    final path = r'/image/models';
+    final path = r'/audio/{text}'
+      .replaceAll('{text}', text);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (voice != null) {
+      queryParams.addAll(_queryParams('', 'voice', voice));
+    }
+    if (responseFormat != null) {
+      queryParams.addAll(_queryParams('', 'response_format', responseFormat));
+    }
+    if (model != null) {
+      queryParams.addAll(_queryParams('', 'model', model));
+    }
+    if (duration != null) {
+      queryParams.addAll(_queryParams('', 'duration', duration));
+    }
+    if (instrumental != null) {
+      queryParams.addAll(_queryParams('', 'instrumental', instrumental));
+    }
+    if (key != null) {
+      queryParams.addAll(_queryParams('', 'key', key));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Generate audio from text — speech (TTS) or music.  **Models:** Use `model` query param to select: - TTS (default): `elevenlabs`, `tts-1`, etc. - Music: `elevenmusic` (or `music`)  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm  **Music options:** `duration` in seconds (3-300), `instrumental=true`  **Authentication:**  Include your API key either: - In the `Authorization` header as a Bearer token: `Authorization: Bearer YOUR_API_KEY` - As a query parameter: `?key=YOUR_API_KEY`  API keys can be created from your dashboard at enter.pollinations.ai.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] text (required):
+  ///   Text to convert to speech, or a music description when model=elevenmusic
+  ///
+  /// * [String] voice:
+  ///   Voice to use for speech generation (TTS only)
+  ///
+  /// * [String] responseFormat:
+  ///   Audio output format (TTS only)
+  ///
+  /// * [String] model:
+  ///   Audio model: TTS (default) or elevenmusic for music generation
+  ///
+  /// * [String] duration:
+  ///   Music duration in seconds, 3-300 (elevenmusic only)
+  ///
+  /// * [String] instrumental:
+  ///   If true, guarantees instrumental output (elevenmusic only)
+  ///
+  /// * [String] key:
+  ///   API key (alternative to Authorization header)
+  Future<MultipartFile?> getGenerateAudioByText(String text, { String? voice, String? responseFormat, String? model, String? duration, String? instrumental, String? key, }) async {
+    final response = await getGenerateAudioByTextWithHttpInfo(text,  voice: voice, responseFormat: responseFormat, model: model, duration: duration, instrumental: instrumental, key: key, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MultipartFile',) as MultipartFile;
+    
+    }
+    return null;
+  }
+
+  /// Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getGenerateAudioModelsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/audio/models';
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -302,9 +412,9 @@ class GenPollinationsAiApi {
     );
   }
 
-  /// Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
-  Future<List<GetGenerateImageModels200ResponseInner>?> getGenerateImageModels() async {
-    final response = await getGenerateImageModelsWithHttpInfo();
+  /// Get a list of available audio models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  Future<List<Object>?> getGenerateAudioModels() async {
+    final response = await getGenerateAudioModelsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -313,8 +423,8 @@ class GenPollinationsAiApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<GetGenerateImageModels200ResponseInner>') as List)
-        .cast<GetGenerateImageModels200ResponseInner>()
+      return (await apiClient.deserializeAsync(responseBody, 'List<Object>') as List)
+        .cast<Object>()
         .toList(growable: false);
 
     }
@@ -368,7 +478,7 @@ class GenPollinationsAiApi {
   ///
   /// * [bool] audio:
   ///   Enable audio generation for video (veo only)
-  Future<Response> getGenerateImagePromptSSWithHttpInfo(String prompt, { String? model, int? width, int? height, int? seed, bool? enhance, String? negativePrompt, bool? safe, String? quality, String? image, bool? transparent, int? duration, String? aspectRatio, bool? audio, }) async {
+  Future<Response> getGenerateImageByPromptWithHttpInfo(String prompt, { String? model, int? width, int? height, int? seed, bool? enhance, String? negativePrompt, bool? safe, String? quality, String? image, bool? transparent, int? duration, String? aspectRatio, bool? audio, }) async {
     // ignore: prefer_const_declarations
     final path = r'/image/{prompt}'
       .replaceAll('{prompt}', prompt);
@@ -479,8 +589,8 @@ class GenPollinationsAiApi {
   ///
   /// * [bool] audio:
   ///   Enable audio generation for video (veo only)
-  Future<MultipartFile?> getGenerateImagePromptSS(String prompt, { String? model, int? width, int? height, int? seed, bool? enhance, String? negativePrompt, bool? safe, String? quality, String? image, bool? transparent, int? duration, String? aspectRatio, bool? audio, }) async {
-    final response = await getGenerateImagePromptSSWithHttpInfo(prompt,  model: model, width: width, height: height, seed: seed, enhance: enhance, negativePrompt: negativePrompt, safe: safe, quality: quality, image: image, transparent: transparent, duration: duration, aspectRatio: aspectRatio, audio: audio, );
+  Future<MultipartFile?> getGenerateImageByPrompt(String prompt, { String? model, int? width, int? height, int? seed, bool? enhance, String? negativePrompt, bool? safe, String? quality, String? image, bool? transparent, int? duration, String? aspectRatio, bool? audio, }) async {
+    final response = await getGenerateImageByPromptWithHttpInfo(prompt,  model: model, width: width, height: height, seed: seed, enhance: enhance, negativePrompt: negativePrompt, safe: safe, quality: quality, image: image, transparent: transparent, duration: duration, aspectRatio: aspectRatio, audio: audio, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -494,12 +604,12 @@ class GenPollinationsAiApi {
     return null;
   }
 
-  /// Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  /// Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getGenerateTextModelsWithHttpInfo() async {
+  Future<Response> getGenerateImageModelsWithHttpInfo() async {
     // ignore: prefer_const_declarations
-    final path = r'/text/models';
+    final path = r'/image/models';
 
     // ignore: prefer_final_locals
     Object? postBody;
@@ -522,9 +632,9 @@ class GenPollinationsAiApi {
     );
   }
 
-  /// Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
-  Future<List<GetGenerateImageModels200ResponseInner>?> getGenerateTextModels() async {
-    final response = await getGenerateTextModelsWithHttpInfo();
+  /// Get a list of available image generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  Future<List<Object>?> getGenerateImageModels() async {
+    final response = await getGenerateImageModelsWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -533,8 +643,8 @@ class GenPollinationsAiApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<GetGenerateImageModels200ResponseInner>') as List)
-        .cast<GetGenerateImageModels200ResponseInner>()
+      return (await apiClient.deserializeAsync(responseBody, 'List<Object>') as List)
+        .cast<Object>()
         .toList(growable: false);
 
     }
@@ -567,7 +677,7 @@ class GenPollinationsAiApi {
   ///
   /// * [bool] stream:
   ///   Stream response in real-time chunks
-  Future<Response> getGenerateTextPromptWithHttpInfo(String prompt, { String? model, int? seed, String? system, bool? json, num? temperature, bool? stream, }) async {
+  Future<Response> getGenerateTextByPromptWithHttpInfo(String prompt, { String? model, int? seed, String? system, bool? json, num? temperature, bool? stream, }) async {
     // ignore: prefer_const_declarations
     final path = r'/text/{prompt}'
       .replaceAll('{prompt}', prompt);
@@ -636,8 +746,8 @@ class GenPollinationsAiApi {
   ///
   /// * [bool] stream:
   ///   Stream response in real-time chunks
-  Future<String?> getGenerateTextPrompt(String prompt, { String? model, int? seed, String? system, bool? json, num? temperature, bool? stream, }) async {
-    final response = await getGenerateTextPromptWithHttpInfo(prompt,  model: model, seed: seed, system: system, json: json, temperature: temperature, stream: stream, );
+  Future<String?> getGenerateTextByPrompt(String prompt, { String? model, int? seed, String? system, bool? json, num? temperature, bool? stream, }) async {
+    final response = await getGenerateTextByPromptWithHttpInfo(prompt,  model: model, seed: seed, system: system, json: json, temperature: temperature, stream: stream, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -647,6 +757,53 @@ class GenPollinationsAiApi {
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'String',) as String;
     
+    }
+    return null;
+  }
+
+  /// Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  Future<Response> getGenerateTextModelsWithHttpInfo() async {
+    // ignore: prefer_const_declarations
+    final path = r'/text/models';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get a list of available text generation models with pricing, capabilities, and metadata. If an API key with model restrictions is provided, only allowed models are returned.
+  Future<List<Object>?> getGenerateTextModels() async {
+    final response = await getGenerateTextModelsWithHttpInfo();
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      final responseBody = await _decodeBodyBytes(response);
+      return (await apiClient.deserializeAsync(responseBody, 'List<Object>') as List)
+        .cast<Object>()
+        .toList(growable: false);
+
     }
     return null;
   }
@@ -690,6 +847,172 @@ class GenPollinationsAiApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetGenerateV1Models200Response',) as GetGenerateV1Models200Response;
+    
+    }
+    return null;
+  }
+
+  /// Generate audio from text — speech (TTS) or music.  This endpoint is OpenAI TTS API compatible. Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateSpeechRequest] createSpeechRequest:
+  Future<Response> postGenerateV1AudioSpeechWithHttpInfo({ CreateSpeechRequest? createSpeechRequest, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/audio/speech';
+
+    // ignore: prefer_final_locals
+    Object? postBody = createSpeechRequest;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['application/json'];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Generate audio from text — speech (TTS) or music.  This endpoint is OpenAI TTS API compatible. Set `model` to `elevenmusic` (or alias `music`) to generate music instead of speech.  **TTS Voices:** alloy, echo, fable, onyx, nova, shimmer, ash, ballad, coral, sage, verse, rachel, domi, bella, elli, charlotte, dorothy, sarah, emily, lily, matilda, adam, antoni, arnold, josh, sam, daniel, charlie, james, fin, callum, liam, george, brian, bill  **Output Formats (TTS only):** mp3, opus, aac, flac, wav, pcm
+  ///
+  /// Parameters:
+  ///
+  /// * [CreateSpeechRequest] createSpeechRequest:
+  Future<MultipartFile?> postGenerateV1AudioSpeech({ CreateSpeechRequest? createSpeechRequest, }) async {
+    final response = await postGenerateV1AudioSpeechWithHttpInfo( createSpeechRequest: createSpeechRequest, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MultipartFile',) as MultipartFile;
+    
+    }
+    return null;
+  }
+
+  /// Transcribe audio to text using Whisper or ElevenLabs Scribe.  This endpoint is OpenAI Whisper API compatible.  **Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm  **Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [MultipartFile] file (required):
+  ///   The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.
+  ///
+  /// * [String] model:
+  ///   The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.
+  ///
+  /// * [String] language:
+  ///   Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.
+  ///
+  /// * [String] prompt:
+  ///   Optional text to guide the model's style or continue a previous segment.
+  ///
+  /// * [String] responseFormat:
+  ///   The format of the transcript output.
+  ///
+  /// * [num] temperature:
+  ///   Sampling temperature between 0 and 1. Lower is more deterministic.
+  Future<Response> postGenerateV1AudioTranscriptionsWithHttpInfo(MultipartFile file, { String? model, String? language, String? prompt, String? responseFormat, num? temperature, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/v1/audio/transcriptions';
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>['multipart/form-data'];
+
+    bool hasFields = false;
+    final mp = MultipartRequest('POST', Uri.parse(path));
+    if (file != null) {
+      hasFields = true;
+      mp.fields[r'file'] = file.field;
+      mp.files.add(file);
+    }
+    if (model != null) {
+      hasFields = true;
+      mp.fields[r'model'] = parameterToString(model);
+    }
+    if (language != null) {
+      hasFields = true;
+      mp.fields[r'language'] = parameterToString(language);
+    }
+    if (prompt != null) {
+      hasFields = true;
+      mp.fields[r'prompt'] = parameterToString(prompt);
+    }
+    if (responseFormat != null) {
+      hasFields = true;
+      mp.fields[r'response_format'] = parameterToString(responseFormat);
+    }
+    if (temperature != null) {
+      hasFields = true;
+      mp.fields[r'temperature'] = parameterToString(temperature);
+    }
+    if (hasFields) {
+      postBody = mp;
+    }
+
+    return apiClient.invokeAPI(
+      path,
+      'POST',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Transcribe audio to text using Whisper or ElevenLabs Scribe.  This endpoint is OpenAI Whisper API compatible.  **Supported formats:** mp3, mp4, mpeg, mpga, m4a, wav, webm  **Models:** `whisper-large-v3` (default), `whisper-1`, `scribe`
+  ///
+  /// Parameters:
+  ///
+  /// * [MultipartFile] file (required):
+  ///   The audio file to transcribe. Supported formats: mp3, mp4, mpeg, mpga, m4a, wav, webm.
+  ///
+  /// * [String] model:
+  ///   The model to use. Options: `whisper-large-v3`, `whisper-1`, `scribe`.
+  ///
+  /// * [String] language:
+  ///   Language of the audio in ISO-639-1 format (e.g. `en`, `fr`). Improves accuracy.
+  ///
+  /// * [String] prompt:
+  ///   Optional text to guide the model's style or continue a previous segment.
+  ///
+  /// * [String] responseFormat:
+  ///   The format of the transcript output.
+  ///
+  /// * [num] temperature:
+  ///   Sampling temperature between 0 and 1. Lower is more deterministic.
+  Future<PostGenerateV1AudioTranscriptions200Response?> postGenerateV1AudioTranscriptions(MultipartFile file, { String? model, String? language, String? prompt, String? responseFormat, num? temperature, }) async {
+    final response = await postGenerateV1AudioTranscriptionsWithHttpInfo(file,  model: model, language: language, prompt: prompt, responseFormat: responseFormat, temperature: temperature, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PostGenerateV1AudioTranscriptions200Response',) as PostGenerateV1AudioTranscriptions200Response;
     
     }
     return null;

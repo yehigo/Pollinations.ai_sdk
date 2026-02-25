@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 class ApiClient {
   ApiClient({this.basePath = 'https://gen.pollinations.ai', this.authentication,});
@@ -198,6 +198,8 @@ class ApiClient {
           return ContentFilterResultJailbreak.fromJson(value);
         case 'ContentFilterSeverity':
           return ContentFilterSeverityTypeTransformer().decode(value);
+        case 'CreateSpeechRequest':
+          return CreateSpeechRequest.fromJson(value);
         case 'ErrorDetails':
           return ErrorDetails.fromJson(value);
         case 'GetAccountBalance200Response':
@@ -216,42 +218,36 @@ class ApiClient {
           return GetAccountUsageDaily200Response.fromJson(value);
         case 'GetAccountUsageDaily200ResponseUsageInner':
           return GetAccountUsageDaily200ResponseUsageInner.fromJson(value);
-        case 'GetGenerateImageModels200ResponseInner':
-          return GetGenerateImageModels200ResponseInner.fromJson(value);
-        case 'GetGenerateImageModels200ResponseInnerPricing':
-          return GetGenerateImageModels200ResponseInnerPricing.fromJson(value);
-        case 'GetGenerateImageModels200ResponseInnerPricingAllOfValue':
-          return GetGenerateImageModels200ResponseInnerPricingAllOfValue.fromJson(value);
         case 'GetGenerateImageModels500Response':
           return GetGenerateImageModels500Response.fromJson(value);
         case 'GetGenerateImageModels500ResponseError':
           return GetGenerateImageModels500ResponseError.fromJson(value);
         case 'GetGenerateImageModels500ResponseErrorMessage':
           return GetGenerateImageModels500ResponseErrorMessage.fromJson(value);
-        case 'GetGenerateTextPrompt400Response':
-          return GetGenerateTextPrompt400Response.fromJson(value);
-        case 'GetGenerateTextPrompt400ResponseError':
-          return GetGenerateTextPrompt400ResponseError.fromJson(value);
-        case 'GetGenerateTextPrompt400ResponseErrorMessage':
-          return GetGenerateTextPrompt400ResponseErrorMessage.fromJson(value);
-        case 'GetGenerateTextPrompt401Response':
-          return GetGenerateTextPrompt401Response.fromJson(value);
-        case 'GetGenerateTextPrompt401ResponseError':
-          return GetGenerateTextPrompt401ResponseError.fromJson(value);
-        case 'GetGenerateTextPrompt401ResponseErrorMessage':
-          return GetGenerateTextPrompt401ResponseErrorMessage.fromJson(value);
-        case 'GetGenerateTextPrompt402Response':
-          return GetGenerateTextPrompt402Response.fromJson(value);
-        case 'GetGenerateTextPrompt402ResponseError':
-          return GetGenerateTextPrompt402ResponseError.fromJson(value);
-        case 'GetGenerateTextPrompt402ResponseErrorMessage':
-          return GetGenerateTextPrompt402ResponseErrorMessage.fromJson(value);
-        case 'GetGenerateTextPrompt403Response':
-          return GetGenerateTextPrompt403Response.fromJson(value);
-        case 'GetGenerateTextPrompt403ResponseError':
-          return GetGenerateTextPrompt403ResponseError.fromJson(value);
-        case 'GetGenerateTextPrompt403ResponseErrorMessage':
-          return GetGenerateTextPrompt403ResponseErrorMessage.fromJson(value);
+        case 'GetGenerateTextByPrompt400Response':
+          return GetGenerateTextByPrompt400Response.fromJson(value);
+        case 'GetGenerateTextByPrompt400ResponseError':
+          return GetGenerateTextByPrompt400ResponseError.fromJson(value);
+        case 'GetGenerateTextByPrompt400ResponseErrorMessage':
+          return GetGenerateTextByPrompt400ResponseErrorMessage.fromJson(value);
+        case 'GetGenerateTextByPrompt401Response':
+          return GetGenerateTextByPrompt401Response.fromJson(value);
+        case 'GetGenerateTextByPrompt401ResponseError':
+          return GetGenerateTextByPrompt401ResponseError.fromJson(value);
+        case 'GetGenerateTextByPrompt401ResponseErrorMessage':
+          return GetGenerateTextByPrompt401ResponseErrorMessage.fromJson(value);
+        case 'GetGenerateTextByPrompt402Response':
+          return GetGenerateTextByPrompt402Response.fromJson(value);
+        case 'GetGenerateTextByPrompt402ResponseError':
+          return GetGenerateTextByPrompt402ResponseError.fromJson(value);
+        case 'GetGenerateTextByPrompt402ResponseErrorMessage':
+          return GetGenerateTextByPrompt402ResponseErrorMessage.fromJson(value);
+        case 'GetGenerateTextByPrompt403Response':
+          return GetGenerateTextByPrompt403Response.fromJson(value);
+        case 'GetGenerateTextByPrompt403ResponseError':
+          return GetGenerateTextByPrompt403ResponseError.fromJson(value);
+        case 'GetGenerateTextByPrompt403ResponseErrorMessage':
+          return GetGenerateTextByPrompt403ResponseErrorMessage.fromJson(value);
         case 'GetGenerateV1Models200Response':
           return GetGenerateV1Models200Response.fromJson(value);
         case 'GetGenerateV1Models200ResponseDataInner':
@@ -276,6 +272,8 @@ class ApiClient {
           return MessageContentPartAnyOf2File.fromJson(value);
         case 'MessageContentPartAnyOfVideoUrl':
           return MessageContentPartAnyOfVideoUrl.fromJson(value);
+        case 'PostGenerateV1AudioTranscriptions200Response':
+          return PostGenerateV1AudioTranscriptions200Response.fromJson(value);
         case 'PostGenerateV1ChatCompletions200Response':
           return PostGenerateV1ChatCompletions200Response.fromJson(value);
         case 'PostGenerateV1ChatCompletions200ResponseChoicesInner':

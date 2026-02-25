@@ -1,4 +1,4 @@
-# PollinationAI_SDK
+# pollination_ai_sdk
 Documentation for `gen.pollinations.ai` - the pollinations.ai API gateway.
 
 [📝 Edit docs](https://github.com/pollinations/pollinations/edit/master/enter.pollinations.ai/src/routes/docs.ts)
@@ -95,7 +95,7 @@ Dart 2.12 or later
 If this Dart package is published to Github, add the following dependency to your pubspec.yaml
 ```
 dependencies:
-  PollinationAI_SDK:
+  pollination_ai_sdk:
     git: https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 ```
 
@@ -103,8 +103,8 @@ dependencies:
 To use the package in your local drive, add the following dependency to your pubspec.yaml
 ```
 dependencies:
-  PollinationAI_SDK:
-    path: /path/to/PollinationAI_SDK
+  pollination_ai_sdk:
+    path: /path/to/pollination_ai_sdk
 ```
 
 ## Tests
@@ -116,7 +116,7 @@ TODO
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 
 // TODO Configure HTTP Bearer authorization: bearerAuth
 // Case 1. Use String Token
@@ -147,11 +147,15 @@ Class | Method | HTTP request | Description
 *GenPollinationsAiApi* | [**getAccountProfile**](doc//GenPollinationsAiApi.md#getaccountprofile) | **GET** /account/profile | 
 *GenPollinationsAiApi* | [**getAccountUsage**](doc//GenPollinationsAiApi.md#getaccountusage) | **GET** /account/usage | 
 *GenPollinationsAiApi* | [**getAccountUsageDaily**](doc//GenPollinationsAiApi.md#getaccountusagedaily) | **GET** /account/usage/daily | 
+*GenPollinationsAiApi* | [**getGenerateAudioByText**](doc//GenPollinationsAiApi.md#getgenerateaudiobytext) | **GET** /audio/{text} | 
+*GenPollinationsAiApi* | [**getGenerateAudioModels**](doc//GenPollinationsAiApi.md#getgenerateaudiomodels) | **GET** /audio/models | 
+*GenPollinationsAiApi* | [**getGenerateImageByPrompt**](doc//GenPollinationsAiApi.md#getgenerateimagebyprompt) | **GET** /image/{prompt} | 
 *GenPollinationsAiApi* | [**getGenerateImageModels**](doc//GenPollinationsAiApi.md#getgenerateimagemodels) | **GET** /image/models | 
-*GenPollinationsAiApi* | [**getGenerateImagePromptSS**](doc//GenPollinationsAiApi.md#getgenerateimagepromptss) | **GET** /image/{prompt} | 
+*GenPollinationsAiApi* | [**getGenerateTextByPrompt**](doc//GenPollinationsAiApi.md#getgeneratetextbyprompt) | **GET** /text/{prompt} | 
 *GenPollinationsAiApi* | [**getGenerateTextModels**](doc//GenPollinationsAiApi.md#getgeneratetextmodels) | **GET** /text/models | 
-*GenPollinationsAiApi* | [**getGenerateTextPrompt**](doc//GenPollinationsAiApi.md#getgeneratetextprompt) | **GET** /text/{prompt} | 
 *GenPollinationsAiApi* | [**getGenerateV1Models**](doc//GenPollinationsAiApi.md#getgeneratev1models) | **GET** /v1/models | 
+*GenPollinationsAiApi* | [**postGenerateV1AudioSpeech**](doc//GenPollinationsAiApi.md#postgeneratev1audiospeech) | **POST** /v1/audio/speech | 
+*GenPollinationsAiApi* | [**postGenerateV1AudioTranscriptions**](doc//GenPollinationsAiApi.md#postgeneratev1audiotranscriptions) | **POST** /v1/audio/transcriptions | 
 *GenPollinationsAiApi* | [**postGenerateV1ChatCompletions**](doc//GenPollinationsAiApi.md#postgeneratev1chatcompletions) | **POST** /v1/chat/completions | 
 
 
@@ -165,6 +169,7 @@ Class | Method | HTTP request | Description
  - [ContentFilterResultHate](doc//ContentFilterResultHate.md)
  - [ContentFilterResultJailbreak](doc//ContentFilterResultJailbreak.md)
  - [ContentFilterSeverity](doc//ContentFilterSeverity.md)
+ - [CreateSpeechRequest](doc//CreateSpeechRequest.md)
  - [ErrorDetails](doc//ErrorDetails.md)
  - [GetAccountBalance200Response](doc//GetAccountBalance200Response.md)
  - [GetAccountKey200Response](doc//GetAccountKey200Response.md)
@@ -174,24 +179,21 @@ Class | Method | HTTP request | Description
  - [GetAccountUsage200ResponseUsageInner](doc//GetAccountUsage200ResponseUsageInner.md)
  - [GetAccountUsageDaily200Response](doc//GetAccountUsageDaily200Response.md)
  - [GetAccountUsageDaily200ResponseUsageInner](doc//GetAccountUsageDaily200ResponseUsageInner.md)
- - [GetGenerateImageModels200ResponseInner](doc//GetGenerateImageModels200ResponseInner.md)
- - [GetGenerateImageModels200ResponseInnerPricing](doc//GetGenerateImageModels200ResponseInnerPricing.md)
- - [GetGenerateImageModels200ResponseInnerPricingAllOfValue](doc//GetGenerateImageModels200ResponseInnerPricingAllOfValue.md)
  - [GetGenerateImageModels500Response](doc//GetGenerateImageModels500Response.md)
  - [GetGenerateImageModels500ResponseError](doc//GetGenerateImageModels500ResponseError.md)
  - [GetGenerateImageModels500ResponseErrorMessage](doc//GetGenerateImageModels500ResponseErrorMessage.md)
- - [GetGenerateTextPrompt400Response](doc//GetGenerateTextPrompt400Response.md)
- - [GetGenerateTextPrompt400ResponseError](doc//GetGenerateTextPrompt400ResponseError.md)
- - [GetGenerateTextPrompt400ResponseErrorMessage](doc//GetGenerateTextPrompt400ResponseErrorMessage.md)
- - [GetGenerateTextPrompt401Response](doc//GetGenerateTextPrompt401Response.md)
- - [GetGenerateTextPrompt401ResponseError](doc//GetGenerateTextPrompt401ResponseError.md)
- - [GetGenerateTextPrompt401ResponseErrorMessage](doc//GetGenerateTextPrompt401ResponseErrorMessage.md)
- - [GetGenerateTextPrompt402Response](doc//GetGenerateTextPrompt402Response.md)
- - [GetGenerateTextPrompt402ResponseError](doc//GetGenerateTextPrompt402ResponseError.md)
- - [GetGenerateTextPrompt402ResponseErrorMessage](doc//GetGenerateTextPrompt402ResponseErrorMessage.md)
- - [GetGenerateTextPrompt403Response](doc//GetGenerateTextPrompt403Response.md)
- - [GetGenerateTextPrompt403ResponseError](doc//GetGenerateTextPrompt403ResponseError.md)
- - [GetGenerateTextPrompt403ResponseErrorMessage](doc//GetGenerateTextPrompt403ResponseErrorMessage.md)
+ - [GetGenerateTextByPrompt400Response](doc//GetGenerateTextByPrompt400Response.md)
+ - [GetGenerateTextByPrompt400ResponseError](doc//GetGenerateTextByPrompt400ResponseError.md)
+ - [GetGenerateTextByPrompt400ResponseErrorMessage](doc//GetGenerateTextByPrompt400ResponseErrorMessage.md)
+ - [GetGenerateTextByPrompt401Response](doc//GetGenerateTextByPrompt401Response.md)
+ - [GetGenerateTextByPrompt401ResponseError](doc//GetGenerateTextByPrompt401ResponseError.md)
+ - [GetGenerateTextByPrompt401ResponseErrorMessage](doc//GetGenerateTextByPrompt401ResponseErrorMessage.md)
+ - [GetGenerateTextByPrompt402Response](doc//GetGenerateTextByPrompt402Response.md)
+ - [GetGenerateTextByPrompt402ResponseError](doc//GetGenerateTextByPrompt402ResponseError.md)
+ - [GetGenerateTextByPrompt402ResponseErrorMessage](doc//GetGenerateTextByPrompt402ResponseErrorMessage.md)
+ - [GetGenerateTextByPrompt403Response](doc//GetGenerateTextByPrompt403Response.md)
+ - [GetGenerateTextByPrompt403ResponseError](doc//GetGenerateTextByPrompt403ResponseError.md)
+ - [GetGenerateTextByPrompt403ResponseErrorMessage](doc//GetGenerateTextByPrompt403ResponseErrorMessage.md)
  - [GetGenerateV1Models200Response](doc//GetGenerateV1Models200Response.md)
  - [GetGenerateV1Models200ResponseDataInner](doc//GetGenerateV1Models200ResponseDataInner.md)
  - [GetGenerateV1Models500Response](doc//GetGenerateV1Models500Response.md)
@@ -204,6 +206,7 @@ Class | Method | HTTP request | Description
  - [MessageContentPartAnyOf2](doc//MessageContentPartAnyOf2.md)
  - [MessageContentPartAnyOf2File](doc//MessageContentPartAnyOf2File.md)
  - [MessageContentPartAnyOfVideoUrl](doc//MessageContentPartAnyOfVideoUrl.md)
+ - [PostGenerateV1AudioTranscriptions200Response](doc//PostGenerateV1AudioTranscriptions200Response.md)
  - [PostGenerateV1ChatCompletions200Response](doc//PostGenerateV1ChatCompletions200Response.md)
  - [PostGenerateV1ChatCompletions200ResponseChoicesInner](doc//PostGenerateV1ChatCompletions200ResponseChoicesInner.md)
  - [PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs](doc//PostGenerateV1ChatCompletions200ResponseChoicesInnerLogprobs.md)

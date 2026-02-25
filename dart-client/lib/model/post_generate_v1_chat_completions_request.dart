@@ -8,13 +8,13 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 class PostGenerateV1ChatCompletionsRequest {
   /// Returns a new [PostGenerateV1ChatCompletionsRequest] instance.
   PostGenerateV1ChatCompletionsRequest({
     this.messages = const [],
-    this.model = const PostGenerateV1ChatCompletionsRequestModelEnum._('openai'),
+    this.model = 'openai',
     this.modalities = const [],
     this.audio,
     this.frequencyPenalty,
@@ -45,7 +45,7 @@ class PostGenerateV1ChatCompletionsRequest {
   List<PostGenerateV1ChatCompletionsRequestMessagesInner> messages;
 
   /// AI model for text generation. See /v1/models for full list.
-  PostGenerateV1ChatCompletionsRequestModelEnum model;
+  String model;
 
   List<PostGenerateV1ChatCompletionsRequestModalitiesEnum> modalities;
 
@@ -351,7 +351,7 @@ class PostGenerateV1ChatCompletionsRequest {
 
       return PostGenerateV1ChatCompletionsRequest(
         messages: PostGenerateV1ChatCompletionsRequestMessagesInner.listFromJson(json[r'messages']),
-        model: PostGenerateV1ChatCompletionsRequestModelEnum.fromJson(json[r'model']) ?? 'openai',
+        model: mapValueOfType<String>(json, r'model') ?? 'openai',
         modalities: PostGenerateV1ChatCompletionsRequestModalitiesEnum.listFromJson(json[r'modalities']),
         audio: PostGenerateV1ChatCompletionsRequestAudio.fromJson(json[r'audio']),
         frequencyPenalty: json[r'frequency_penalty'] == null
@@ -437,149 +437,6 @@ class PostGenerateV1ChatCompletionsRequest {
     'messages',
   };
 }
-
-/// AI model for text generation. See /v1/models for full list.
-class PostGenerateV1ChatCompletionsRequestModelEnum {
-  /// Instantiate a new enum with the provided [value].
-  const PostGenerateV1ChatCompletionsRequestModelEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final String value;
-
-  @override
-  String toString() => value;
-
-  String toJson() => value;
-
-  static const openai = PostGenerateV1ChatCompletionsRequestModelEnum._(r'openai');
-  static const openaiFast = PostGenerateV1ChatCompletionsRequestModelEnum._(r'openai-fast');
-  static const openaiLarge = PostGenerateV1ChatCompletionsRequestModelEnum._(r'openai-large');
-  static const qwenCoder = PostGenerateV1ChatCompletionsRequestModelEnum._(r'qwen-coder');
-  static const mistral = PostGenerateV1ChatCompletionsRequestModelEnum._(r'mistral');
-  static const openaiAudio = PostGenerateV1ChatCompletionsRequestModelEnum._(r'openai-audio');
-  static const gemini = PostGenerateV1ChatCompletionsRequestModelEnum._(r'gemini');
-  static const geminiFast = PostGenerateV1ChatCompletionsRequestModelEnum._(r'gemini-fast');
-  static const deepseek = PostGenerateV1ChatCompletionsRequestModelEnum._(r'deepseek');
-  static const grok = PostGenerateV1ChatCompletionsRequestModelEnum._(r'grok');
-  static const geminiSearch = PostGenerateV1ChatCompletionsRequestModelEnum._(r'gemini-search');
-  static const chickytutor = PostGenerateV1ChatCompletionsRequestModelEnum._(r'chickytutor');
-  static const midijourney = PostGenerateV1ChatCompletionsRequestModelEnum._(r'midijourney');
-  static const claudeFast = PostGenerateV1ChatCompletionsRequestModelEnum._(r'claude-fast');
-  static const claude = PostGenerateV1ChatCompletionsRequestModelEnum._(r'claude');
-  static const claudeLarge = PostGenerateV1ChatCompletionsRequestModelEnum._(r'claude-large');
-  static const perplexityFast = PostGenerateV1ChatCompletionsRequestModelEnum._(r'perplexity-fast');
-  static const perplexityReasoning = PostGenerateV1ChatCompletionsRequestModelEnum._(r'perplexity-reasoning');
-  static const kimi = PostGenerateV1ChatCompletionsRequestModelEnum._(r'kimi');
-  static const geminiLarge = PostGenerateV1ChatCompletionsRequestModelEnum._(r'gemini-large');
-  static const geminiLegacy = PostGenerateV1ChatCompletionsRequestModelEnum._(r'gemini-legacy');
-  static const novaFast = PostGenerateV1ChatCompletionsRequestModelEnum._(r'nova-fast');
-  static const glm = PostGenerateV1ChatCompletionsRequestModelEnum._(r'glm');
-  static const minimax = PostGenerateV1ChatCompletionsRequestModelEnum._(r'minimax');
-  static const nomnom = PostGenerateV1ChatCompletionsRequestModelEnum._(r'nomnom');
-
-  /// List of all possible values in this [enum][PostGenerateV1ChatCompletionsRequestModelEnum].
-  static const values = <PostGenerateV1ChatCompletionsRequestModelEnum>[
-    openai,
-    openaiFast,
-    openaiLarge,
-    qwenCoder,
-    mistral,
-    openaiAudio,
-    gemini,
-    geminiFast,
-    deepseek,
-    grok,
-    geminiSearch,
-    chickytutor,
-    midijourney,
-    claudeFast,
-    claude,
-    claudeLarge,
-    perplexityFast,
-    perplexityReasoning,
-    kimi,
-    geminiLarge,
-    geminiLegacy,
-    novaFast,
-    glm,
-    minimax,
-    nomnom,
-  ];
-
-  static PostGenerateV1ChatCompletionsRequestModelEnum? fromJson(dynamic value) => PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer().decode(value);
-
-  static List<PostGenerateV1ChatCompletionsRequestModelEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <PostGenerateV1ChatCompletionsRequestModelEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = PostGenerateV1ChatCompletionsRequestModelEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [PostGenerateV1ChatCompletionsRequestModelEnum] to String,
-/// and [decode] dynamic data back to [PostGenerateV1ChatCompletionsRequestModelEnum].
-class PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer {
-  factory PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer() => _instance ??= const PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer._();
-
-  const PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer._();
-
-  String encode(PostGenerateV1ChatCompletionsRequestModelEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a PostGenerateV1ChatCompletionsRequestModelEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  PostGenerateV1ChatCompletionsRequestModelEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case r'openai': return PostGenerateV1ChatCompletionsRequestModelEnum.openai;
-        case r'openai-fast': return PostGenerateV1ChatCompletionsRequestModelEnum.openaiFast;
-        case r'openai-large': return PostGenerateV1ChatCompletionsRequestModelEnum.openaiLarge;
-        case r'qwen-coder': return PostGenerateV1ChatCompletionsRequestModelEnum.qwenCoder;
-        case r'mistral': return PostGenerateV1ChatCompletionsRequestModelEnum.mistral;
-        case r'openai-audio': return PostGenerateV1ChatCompletionsRequestModelEnum.openaiAudio;
-        case r'gemini': return PostGenerateV1ChatCompletionsRequestModelEnum.gemini;
-        case r'gemini-fast': return PostGenerateV1ChatCompletionsRequestModelEnum.geminiFast;
-        case r'deepseek': return PostGenerateV1ChatCompletionsRequestModelEnum.deepseek;
-        case r'grok': return PostGenerateV1ChatCompletionsRequestModelEnum.grok;
-        case r'gemini-search': return PostGenerateV1ChatCompletionsRequestModelEnum.geminiSearch;
-        case r'chickytutor': return PostGenerateV1ChatCompletionsRequestModelEnum.chickytutor;
-        case r'midijourney': return PostGenerateV1ChatCompletionsRequestModelEnum.midijourney;
-        case r'claude-fast': return PostGenerateV1ChatCompletionsRequestModelEnum.claudeFast;
-        case r'claude': return PostGenerateV1ChatCompletionsRequestModelEnum.claude;
-        case r'claude-large': return PostGenerateV1ChatCompletionsRequestModelEnum.claudeLarge;
-        case r'perplexity-fast': return PostGenerateV1ChatCompletionsRequestModelEnum.perplexityFast;
-        case r'perplexity-reasoning': return PostGenerateV1ChatCompletionsRequestModelEnum.perplexityReasoning;
-        case r'kimi': return PostGenerateV1ChatCompletionsRequestModelEnum.kimi;
-        case r'gemini-large': return PostGenerateV1ChatCompletionsRequestModelEnum.geminiLarge;
-        case r'gemini-legacy': return PostGenerateV1ChatCompletionsRequestModelEnum.geminiLegacy;
-        case r'nova-fast': return PostGenerateV1ChatCompletionsRequestModelEnum.novaFast;
-        case r'glm': return PostGenerateV1ChatCompletionsRequestModelEnum.glm;
-        case r'minimax': return PostGenerateV1ChatCompletionsRequestModelEnum.minimax;
-        case r'nomnom': return PostGenerateV1ChatCompletionsRequestModelEnum.nomnom;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer] instance.
-  static PostGenerateV1ChatCompletionsRequestModelEnumTypeTransformer? _instance;
-}
-
 
 
 class PostGenerateV1ChatCompletionsRequestModalitiesEnum {

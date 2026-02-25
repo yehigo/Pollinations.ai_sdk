@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf3
+# pollination_ai_sdk.model.PostGenerateV1ChatCompletions200ResponseChoicesInnerMessageContentBlocksInnerAnyOf3
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

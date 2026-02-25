@@ -19,7 +19,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "PollinationAI_SDK"
-VERSION = "1.0.1"
+VERSION = "1.0.2"
 PYTHON_REQUIRES = ">= 3.9"
 REQUIRES = [
     "urllib3 >= 2.1.0, < 3.0.0",
@@ -34,7 +34,7 @@ setup(
     description="pollinations.ai API",
     author="OpenAPI Generator community",
     author_email="team@openapitools.org",
-    url="https://github.com/yehigo/pollinations.ai",
+    url="https://github.com/yehigo/Pollinations.ai_sdk",
     keywords=["OpenAPI", "OpenAPI-Generator", "pollinations.ai API"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),

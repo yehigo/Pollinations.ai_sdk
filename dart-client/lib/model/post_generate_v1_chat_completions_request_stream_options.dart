@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 class PostGenerateV1ChatCompletionsRequestStreamOptions {
   /// Returns a new [PostGenerateV1ChatCompletionsRequestStreamOptions] instance.
@@ -16,6 +16,12 @@ class PostGenerateV1ChatCompletionsRequestStreamOptions {
     this.includeUsage,
   });
 
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
   bool? includeUsage;
 
   @override

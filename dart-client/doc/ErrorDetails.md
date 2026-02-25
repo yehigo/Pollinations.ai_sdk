@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.ErrorDetails
+# pollination_ai_sdk.model.ErrorDetails
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.PostGenerateV1ChatCompletions403Response
+# pollination_ai_sdk.model.PostGenerateV1ChatCompletions403Response
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

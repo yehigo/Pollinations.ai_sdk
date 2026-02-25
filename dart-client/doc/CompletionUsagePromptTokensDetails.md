@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.CompletionUsagePromptTokensDetails
+# pollination_ai_sdk.model.CompletionUsagePromptTokensDetails
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

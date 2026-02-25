@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 class GetAccountProfile200Response {
   /// Returns a new [GetAccountProfile200Response] instance.
@@ -16,6 +16,7 @@ class GetAccountProfile200Response {
     required this.name,
     required this.email,
     required this.githubUsername,
+    required this.image,
     required this.tier,
     required this.createdAt,
     required this.nextResetAt,
@@ -26,6 +27,8 @@ class GetAccountProfile200Response {
   String? email;
 
   String? githubUsername;
+
+  String? image;
 
   /// User's current tier level
   GetAccountProfile200ResponseTierEnum tier;
@@ -40,6 +43,7 @@ class GetAccountProfile200Response {
     other.name == name &&
     other.email == email &&
     other.githubUsername == githubUsername &&
+    other.image == image &&
     other.tier == tier &&
     other.createdAt == createdAt &&
     other.nextResetAt == nextResetAt;
@@ -50,12 +54,13 @@ class GetAccountProfile200Response {
     (name == null ? 0 : name!.hashCode) +
     (email == null ? 0 : email!.hashCode) +
     (githubUsername == null ? 0 : githubUsername!.hashCode) +
+    (image == null ? 0 : image!.hashCode) +
     (tier.hashCode) +
     (createdAt.hashCode) +
     (nextResetAt == null ? 0 : nextResetAt!.hashCode);
 
   @override
-  String toString() => 'GetAccountProfile200Response[name=$name, email=$email, githubUsername=$githubUsername, tier=$tier, createdAt=$createdAt, nextResetAt=$nextResetAt]';
+  String toString() => 'GetAccountProfile200Response[name=$name, email=$email, githubUsername=$githubUsername, image=$image, tier=$tier, createdAt=$createdAt, nextResetAt=$nextResetAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -73,6 +78,11 @@ class GetAccountProfile200Response {
       json[r'githubUsername'] = this.githubUsername;
     } else {
       json[r'githubUsername'] = null;
+    }
+    if (this.image != null) {
+      json[r'image'] = this.image;
+    } else {
+      json[r'image'] = null;
     }
       json[r'tier'] = this.tier;
       json[r'createdAt'] = _isEpochMarker(r'/^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$/')
@@ -110,6 +120,7 @@ class GetAccountProfile200Response {
         name: mapValueOfType<String>(json, r'name'),
         email: mapValueOfType<String>(json, r'email'),
         githubUsername: mapValueOfType<String>(json, r'githubUsername'),
+        image: mapValueOfType<String>(json, r'image'),
         tier: GetAccountProfile200ResponseTierEnum.fromJson(json[r'tier'])!,
         createdAt: mapDateTime(json, r'createdAt', r'/^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$/')!,
         nextResetAt: mapDateTime(json, r'nextResetAt', r'/^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$/'),
@@ -163,6 +174,7 @@ class GetAccountProfile200Response {
     'name',
     'email',
     'githubUsername',
+    'image',
     'tier',
     'createdAt',
     'nextResetAt',

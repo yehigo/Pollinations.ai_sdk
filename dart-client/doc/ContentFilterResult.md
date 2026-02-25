@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.ContentFilterResult
+# pollination_ai_sdk.model.ContentFilterResult
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

@@ -12,8 +12,7 @@ part of PollinationAI_SDK;
 
 class GetGenerateImageModels200ResponseInnerPricingAllOfValue {
   /// Returns a new [GetGenerateImageModels200ResponseInnerPricingAllOfValue] instance.
-  GetGenerateImageModels200ResponseInnerPricingAllOfValue({
-  });
+  GetGenerateImageModels200ResponseInnerPricingAllOfValue();
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GetGenerateImageModels200ResponseInnerPricingAllOfValue &&

@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.MessageContentPartAnyOf1
+# pollination_ai_sdk.model.MessageContentPartAnyOf1
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.GetAccountKey200ResponsePermissions
+# pollination_ai_sdk.model.GetAccountKey200ResponsePermissions
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties

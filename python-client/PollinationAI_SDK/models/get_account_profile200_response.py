@@ -31,10 +31,11 @@ class GetAccountProfile200Response(BaseModel):
     name: Optional[StrictStr]
     email: Optional[Annotated[str, Field(strict=True)]]
     github_username: Optional[StrictStr] = Field(alias="githubUsername")
+    image: Optional[StrictStr]
     tier: StrictStr = Field(description="User's current tier level")
     created_at: datetime = Field(description="Account creation timestamp (ISO 8601)", alias="createdAt")
     next_reset_at: Optional[datetime] = Field(alias="nextResetAt")
-    __properties: ClassVar[List[str]] = ["name", "email", "githubUsername", "tier", "createdAt", "nextResetAt"]
+    __properties: ClassVar[List[str]] = ["name", "email", "githubUsername", "image", "tier", "createdAt", "nextResetAt"]
 
     @field_validator('email')
     def email_validate_regular_expression(cls, value):
@@ -124,6 +125,11 @@ class GetAccountProfile200Response(BaseModel):
         if self.github_username is None and "github_username" in self.model_fields_set:
             _dict['githubUsername'] = None
 
+        # set to None if image (nullable) is None
+        # and model_fields_set contains the field
+        if self.image is None and "image" in self.model_fields_set:
+            _dict['image'] = None
+
         # set to None if next_reset_at (nullable) is None
         # and model_fields_set contains the field
         if self.next_reset_at is None and "next_reset_at" in self.model_fields_set:
@@ -144,6 +150,7 @@ class GetAccountProfile200Response(BaseModel):
             "name": obj.get("name"),
             "email": obj.get("email"),
             "githubUsername": obj.get("githubUsername"),
+            "image": obj.get("image"),
             "tier": obj.get("tier"),
             "createdAt": obj.get("createdAt"),
             "nextResetAt": obj.get("nextResetAt")

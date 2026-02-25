@@ -68,11 +68,6 @@ class PostGenerateV1ChatCompletionsRequestStreamOptions(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if include_usage (nullable) is None
-        # and model_fields_set contains the field
-        if self.include_usage is None and "include_usage" in self.model_fields_set:
-            _dict['include_usage'] = None
-
         return _dict
 
     @classmethod

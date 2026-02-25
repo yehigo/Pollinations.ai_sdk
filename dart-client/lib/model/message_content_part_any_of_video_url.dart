@@ -8,7 +8,7 @@
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: lines_longer_than_80_chars
 
-part of PollinationAI_SDK;
+part of pollination_ai_sdk;
 
 class MessageContentPartAnyOfVideoUrl {
   /// Returns a new [MessageContentPartAnyOfVideoUrl] instance.

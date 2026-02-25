@@ -1,8 +1,8 @@
-# PollinationAI_SDK.model.PostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2
+# pollination_ai_sdk.model.PostGenerateV1ChatCompletionsRequestResponseFormatAnyOf2
 
 ## Load the model package
 ```dart
-import 'package:PollinationAI_SDK/api.dart';
+import 'package:pollination_ai_sdk/api.dart';
 ```
 
 ## Properties
