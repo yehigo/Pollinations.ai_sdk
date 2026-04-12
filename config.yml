@@ -1,11 +1,11 @@
 packageName: PollinationAI_SDK
 projectName: PollinationAI_SDK
-packageVersion: 1.0.2
+packageVersion: 1.0.3
 packageUrl: https://github.com/yehigo/Pollinations.ai_sdk
 packageAuthor_email: pintulalmee@gmail.com
 
 pubName: pollination_ai_sdk
-pubVersion: 1.0.2
+pubVersion: 1.0.3
 pubLibrary: pollination_ai_sdk
 pubpubAuthor: Pintu Lal Meena
 pubAuthorEmail: pintulalmee@gmail.com
